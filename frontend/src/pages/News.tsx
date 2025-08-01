@@ -4,19 +4,9 @@ import { Search, Filter, Calendar, Tag, ArrowRight, Loader2 } from 'lucide-react
 import { Link } from 'react-router-dom';
 import LazyImage from '../components/LazyImage';
 import classImage from '../assets/school.jpg'
+import type { NewsItem } from '../lib/types';
 
-interface NewsItem {
-  id: string;
-  title: string;
-  content: string;
-  slug: string;
-  imageUrl?: string;
-  tag?: string;
-  author?: string;
-  isPublished: boolean;
-  createdAt: string;
-  updatedAt: string;
-}
+
 
 const News: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');

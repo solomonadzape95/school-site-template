@@ -1,22 +1,53 @@
 import React, { useState, useEffect } from 'react';
-import { useSchool } from '../context/SchoolContext';
+import { useQuery } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Calendar, MapPin } from 'lucide-react';
 import LazyImage from '../components/LazyImage';
+import type { NewsItem, EventItem } from '../lib/types';
 
 // Import images from assets
 import classImage from '../assets/class.jpg';
 import logo from '../assets/logo.jpg';
 import childrenImage from '../assets/children.jpg';
-// import busImage from '../assets/bus.jpg';
 import aboveImage from '../assets/above.jpg';
 import schoolImage from '../assets/school.jpg';
 
 const Home: React.FC = () => {
-  const { data } = useSchool();
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  // Carousel images using actual assets
+  // Fetch recent news from API
+  const { data: news = [] as NewsItem[] } = useQuery({
+    queryKey: ['news'],
+    queryFn: async () => {
+      const response = await fetch('http://localhost:3000/api/news');
+      if (!response.ok) {
+        throw new Error('Failed to fetch news');
+      }
+      const data = await response.json();
+      return data
+        .sort((a: NewsItem, b: NewsItem) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+        .slice(0, 22);
+      }
+  });
+
+  // Fetch recent events from API
+  const { data: events = [] as EventItem[] } = useQuery({
+    queryKey: ['events'],
+    queryFn: async () => {
+      const response = await fetch('http://localhost:3000/api/events');
+      if (!response.ok) {
+        throw new Error('Failed to fetch events');
+      }
+      const data = await response.json();
+      // Sort by date and get upcoming events first, then recent past events
+      // Ensure date is parsed as a number for comparison
+      return data
+        .sort((a: EventItem, b: EventItem) => new Date(a.date).getTime() - new Date(b.date).getTime())
+        .slice(0, 2);
+    }
+  });
+
+  // Carousel images with dynamic titles and subtitles
   const carouselImages = [
     {
       url: schoolImage,
@@ -69,20 +100,21 @@ const Home: React.FC = () => {
                 index === currentSlide ? 'opacity-100' : 'opacity-0'
               }`}
             >
+              {/* <div className="relative h-full flex items-center z-50 bg-transparent  justify-center"> */}
+                <div className="text-center text-white px-6 bg-transaparent absolute bottom-1/4 mx-auto w-full z-50">
+                  <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-trasnparent">{image.title}</h1>
+                  <p className="text-lg md:text-xl max-w-3xl mx-auto">
+                    {image.subtitle}
+                  </p>
+                </div>
+              {/* </div> */}
               <LazyImage 
                 src={image.url}
                 alt={image.title}
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-black/60"></div>
-              <div className="relative h-full flex items-center justify-center">
-                <div className="text-center text-white px-6">
-                  <h1 className="text-4xl md:text-5xl font-bold mb-6">{image.title}</h1>
-                  <p className="text-lg md:text-xl max-w-3xl mx-auto">
-                    {image.subtitle}
-                  </p>
-                </div>
-              </div>
+              
             </div>
           ))}
         </div>
@@ -121,7 +153,7 @@ const Home: React.FC = () => {
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center">
-          <img src={logo} width={80} height={80} className='mx-auto my-2'/>
+            <img src={logo} width={80} height={80} className='mx-auto my-2' alt="Lasa Schools Logo"/>
             <h2 className="text-3xl font-bold text-[#eb4c37] mb-4">Welcome To Lasa Schools</h2>
             <div className="relative mb-8">
               <div className="h-px bg-[#eb4c37]"></div>
@@ -153,7 +185,8 @@ const Home: React.FC = () => {
               </div>
               <div className="p-8 relative flex-1">
                 <p className="text-gray-600 mb-6 text-base leading-relaxed">
-                  {data.aboutSchool}
+                  Lasa Schools is committed to providing quality education in a nurturing environment. 
+                  Our dedicated teachers and staff work together to ensure every student reaches their full potential.
                 </p>
                 <Link 
                   to="/about" 
@@ -175,7 +208,8 @@ const Home: React.FC = () => {
               </div>
               <div className="p-8 flex-1 relative">
                 <p className="text-gray-600 mb-6 text-base leading-relaxed">
-                  {data.vision}
+                  Our vision is to be a leading educational institution that nurtures academic excellence, 
+                  character development, and prepares students for future success in a global society.
                 </p>
                 <Link 
                   to="/vision" 
@@ -197,7 +231,8 @@ const Home: React.FC = () => {
               </div>
               <div className="p-8 relative flex-1">
                 <p className="text-gray-600 mb-10 text-base leading-relaxed">
-                  {data.activities}
+                  We offer a comprehensive curriculum that includes both academic and extracurricular activities. 
+                  From sports to arts, we encourage students to explore their talents and develop new skills.
                 </p>
                 <Link 
                   to="/curricular" 
@@ -218,53 +253,107 @@ const Home: React.FC = () => {
             {/* Latest News */}
             <div>
               <h2 className="text-3xl font-bold text-gray-800 mb-8">Latest News</h2>
-              <div className="space-y-6">
-                {data.news.slice(0, 2).map((news) => (
-                  <div key={news.id} className="bg-white rounded-lg shadow-lg p-6">
-                    <h3 className="font-semibold text-gray-800 mb-3 text-lg">{news.title}</h3>
-                    <p className="text-gray-600 text-sm mb-3">{news.date}</p>
-                    <p className="text-gray-600 text-base mb-4">{news.content.substring(0, 120)}...</p>
-                    <Link 
-                      to={`/news/${news.id}`}
-                        className="text-[#eb4c37] hover:text-[#eb4c37]/70 font-medium"
-                    >
-                      Read Full Article →
-                    </Link>
+              {news.length > 0 ? (
+                <>
+                  <div className="space-y-6">
+                    {news.map((newsItem: NewsItem) => (
+                      <div key={newsItem.id} className="bg-white rounded-lg relative shadow-lg p-6 overflow-hidden">
+                         <div className="text-[8rem] mb-2 bg-blue-600 absolute right-0 top-0 grid place-content-center h-full w-2/5">📰</div>
+                        <h3 className="font-semibold text-gray-800 mb-3 text-lg">{newsItem.title}</h3>
+                        <div className="flex items-center text-gray-500 text-sm mb-3">
+                          <Calendar className="w-4 h-4 mr-2" />
+                          {new Date(newsItem.createdAt).toLocaleDateString()}
+                          {newsItem.tag && (
+                            <>
+                              <span className="mx-2">•</span>
+                              <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">
+                                {newsItem.tag}
+                              </span>
+                            </>
+                          )}
+                        </div>
+                        <p className="text-gray-600 text-base mb-4">
+                          {newsItem.content.substring(0, 120)}...
+                        </p>
+                        <Link 
+                          to={`/news/${newsItem.slug}`}
+                          className="text-[#eb4c37] hover:text-[#eb4c37]/70 font-medium"
+                        >
+                          Read Full Article →
+                        </Link>
+                      </div>
+                    ))}
                   </div>
-                ))}
-              </div>
-              <Link 
-                to="/news" 
-                className="inline-block mt-8 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors"
-              >
-                VIEW ALL NEWS
-              </Link>
+                  <Link 
+                    to="/news" 
+                    className="inline-block mt-8 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors"
+                  >
+                    VIEW ALL NEWS
+                  </Link>
+                </>
+              ) : (
+                <div className="bg-white rounded-lg shadow-lg p-6 text-center">
+                  <p className="text-gray-500">No recent news available.</p>
+                  <Link 
+                    to="/news" 
+                    className="inline-block mt-4 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors"
+                  >
+                    VIEW ALL NEWS
+                  </Link>
+                </div>
+              )}
             </div>
 
             {/* Latest Events */}
             <div>
               <h2 className="text-3xl font-bold text-gray-800 mb-8">Latest Events</h2>
-              <div className="space-y-6">
-                {data.events.slice(0, 2).map((event) => (
-                  <div key={event.id} className="bg-white rounded-lg shadow-lg p-6">
-                    <h3 className="font-semibold text-gray-800 mb-3 text-lg">{event.title}</h3>
-                    <p className="text-gray-600 text-sm mb-3">{event.date}</p>
-                    <p className="text-gray-600 text-base mb-4">{event.description}</p>
-                    <Link 
-                      to={`/events/${event.id}`}
-                      className="text-[#eb4c37] hover:text-[#eb4c37]/70 font-medium"
-                    >
-                      View Details →
-                    </Link>
+              {events.length > 0 ? (
+                <>
+                  <div className="space-y-6">
+                    {events.map((event: EventItem) => (
+                      <div key={event.id} className="bg-white rounded-lg  relative shadow-lg p-6 overflow-hidden">
+                         <div className="text-[8rem] mb-2 bg-[#eb4c37] absolute right-0 top-0 grid place-content-center h-full w-2/5">🎉</div>
+                        <h3 className="font-semibold text-gray-800 mb-3 text-lg">{event.title}</h3>
+                        <div className="flex items-center text-gray-500 text-sm mb-3">
+                          <Calendar className="w-4 h-4 mr-2" />
+                          {new Date(event.date).toLocaleDateString()}
+                          {event.location && (
+                            <>
+                              <MapPin className="w-4 h-4 ml-4 mr-2" />
+                              {event.location}
+                            </>
+                          )}
+                        </div>
+                        <p className="text-gray-600 text-base mb-4">
+                          {event.description.substring(0, 120)}...
+                        </p>
+                        <Link 
+                          to={`/events/${event.slug}`}
+                          className="text-[#eb4c37] hover:text-[#eb4c37]/70 font-medium"
+                        >
+                          View Details →
+                        </Link>
+                      </div>
+                    ))}
                   </div>
-                ))}
-              </div>
-              <Link 
-                to="/events" 
-                className="inline-block mt-8 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors"
-              >
-                VIEW ALL EVENTS
-              </Link>
+                  <Link 
+                    to="/events" 
+                    className="inline-block mt-8 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors"
+                  >
+                    VIEW ALL EVENTS
+                  </Link>
+                </>
+              ) : (
+                <div className="bg-white rounded-lg shadow-lg p-6 text-center">
+                  <p className="text-gray-500">No upcoming events available.</p>
+                  <Link 
+                    to="/events" 
+                    className="inline-block mt-4 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors"
+                  >
+                    VIEW ALL EVENTS
+                  </Link>
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -291,64 +380,21 @@ const Home: React.FC = () => {
               <div>
                 <h3 className="text-2xl font-bold text-gray-800 mb-6">Chief Dr. Pius Chinedu Ogbonnia Okoh</h3>
                 <p className="text-gray-600 mb-6 text-base leading-relaxed">
-                  {data.founderBio}
+                  A visionary educator and philanthropist, Chief Dr. Pius Chinedu Ogbonnia Okoh founded Lasa Schools 
+                  with the mission to provide quality education accessible to all. His dedication to academic excellence 
+                  and character development has shaped the lives of thousands of students.
                 </p>
                 <Link 
-                to="/founder" 
-                className="inline-block mt-8 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors"
-              >
-                READ MORE
-              </Link>
+                  to="/founder" 
+                  className="inline-block mt-8 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors"
+                >
+                  READ MORE
+                </Link>
               </div>
             </div>
           </div>
         </div>
       </section>
-
-      {/* Recent Photos Section */}
-      {/* <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-6">
-          <h2 className="text-3xl font-bold text-gray-800 text-center mb-12">Recent Photos</h2>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-            <div className="h-48 rounded-lg overflow-hidden shadow-lg">
-              <LazyImage 
-                src={classImage}
-                alt="Classroom"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="h-48 rounded-lg overflow-hidden shadow-lg">
-              <LazyImage 
-                src={playImage}
-                alt="Playground"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="h-48 rounded-lg overflow-hidden shadow-lg">
-              <LazyImage 
-                src={childrenImage}
-                alt="Children"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="h-48 rounded-lg overflow-hidden shadow-lg">
-              <LazyImage 
-                src={busImage}
-                alt="School Bus"
-                className="w-full h-full object-cover"
-              />
-            </div>
-          </div>
-          <div className="text-center mt-12">
-            <Link 
-              to="/gallery" 
-              className="inline-block bg-blue-600 text-white px-8 py-4 rounded-lg hover:bg-blue-700 transition-colors text-lg font-medium"
-            >
-              VIEW GALLERY
-            </Link>
-          </div>
-        </div>
-      </section> */}
     </div>
   );
 };
