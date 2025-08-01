@@ -1,4 +1,4 @@
-import express from "express";
+import express, { Request, Response } from 'express';
 import cors from "cors";
 import { PrismaClient } from '../generated/prisma';
 
@@ -20,7 +20,7 @@ app.use(express.json());
 const port = process.env.PORT || 3000;
 
 // Health check endpoint
-app.get('/', (req, res) => res.json({ message: 'School Site API is running' }));
+app.get('/', (req : Request, res:Response) => res.json({ message: 'School Site API is running' }));
 
 // API routes
 app.use('/api/applicants', applicantsRouter);
@@ -36,7 +36,7 @@ app.use((err: any, req: express.Request, res: express.Response, next: express.Ne
 });
 
 // 404 handler - catch all unmatched routes
-app.use((req, res) => {
+app.use((req : Request, res:Response) => {
   res.status(404).json({ error: 'Route not found' });
 });
 

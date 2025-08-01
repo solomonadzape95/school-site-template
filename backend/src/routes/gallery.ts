@@ -1,11 +1,11 @@
-import express from 'express';
+import express, { Request, Response } from 'express';
 import { PrismaClient } from '../../generated/prisma';
 
 const router = express.Router();
 const prisma = new PrismaClient();
 
 // Get all gallery images
-router.get('/', async (req, res) => {
+router.get('/', async (req : Request, res:Response) => {
   try {
     const { published, category } = req.query;
     const where: any = {};
@@ -29,7 +29,7 @@ router.get('/', async (req, res) => {
 });
 
 // Get single gallery image
-router.get('/:id', async (req, res) => {
+router.get('/:id', async (req : Request, res:Response) => {
   try {
     const image = await prisma.gallery.findUnique({
       where: { id: req.params.id }
@@ -44,7 +44,7 @@ router.get('/:id', async (req, res) => {
 });
 
 // Create new gallery image
-router.post('/', async (req, res) => {
+router.post('/', async (req : Request, res:Response) => {
   try {
     const { title, description, imageUrl, category, isPublished } = req.body;
     const image = await prisma.gallery.create({
@@ -63,7 +63,7 @@ router.post('/', async (req, res) => {
 });
 
 // Update gallery image
-router.put('/:id', async (req, res) => {
+router.put('/:id', async (req : Request, res:Response) => {
   try {
     const { title, description, imageUrl, category, isPublished } = req.body;
     const image = await prisma.gallery.update({
@@ -83,7 +83,7 @@ router.put('/:id', async (req, res) => {
 });
 
 // Delete gallery image
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', async (req : Request, res:Response) => {
   try {
     await prisma.gallery.delete({
       where: { id: req.params.id }
@@ -95,7 +95,7 @@ router.delete('/:id', async (req, res) => {
 });
 
 // Toggle publish status
-router.patch('/:id/publish', async (req, res) => {
+router.patch('/:id/publish', async (req : Request, res:Response) => {
   try {
     const image = await prisma.gallery.findUnique({
       where: { id: req.params.id }
@@ -115,7 +115,7 @@ router.patch('/:id/publish', async (req, res) => {
 });
 
 // Get categories
-router.get('/categories/list', async (req, res) => {
+router.get('/categories/list', async (req : Request, res:Response) => {
   try {
     const categories = await prisma.gallery.findMany({
       select: { category: true },

@@ -1,11 +1,12 @@
-import express from 'express';
+import express, { Request, Response } from 'express';
+
 import { PrismaClient } from '../../generated/prisma';
 
 const router = express.Router();
 const prisma = new PrismaClient();
 
 // Get all applicants
-router.get('/', async (req, res) => {
+router.get('/', async (req : Request, res:Response) => {
   try {
     const applicants = await prisma.applicant.findMany({
       orderBy: { createdAt: 'desc' }
@@ -17,7 +18,7 @@ router.get('/', async (req, res) => {
 });
 
 // Get single applicant
-router.get('/:id', async (req, res) => {
+router.get('/:id', async (req : Request, res:Response) => {
   try {
     const applicant = await prisma.applicant.findUnique({
       where: { id: req.params.id }
@@ -32,7 +33,7 @@ router.get('/:id', async (req, res) => {
 });
 
 // Create new applicant
-router.post('/', async (req, res) => {
+router.post('/', async (req : Request, res:Response) => {
   try {
     const { name, phoneNumber } = req.body;
 
@@ -66,7 +67,7 @@ router.post('/', async (req, res) => {
 });
 
 // Update applicant
-router.put('/:id', async (req, res) => {
+router.put('/:id', async (req : Request, res:Response) => {
   try {
     const { name, phoneNumber } = req.body;
     const applicant = await prisma.applicant.update({
@@ -83,7 +84,7 @@ router.put('/:id', async (req, res) => {
 });
 
 // Delete applicant
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', async (req : Request, res:Response) => {
   try {
     await prisma.applicant.delete({
       where: { id: req.params.id }

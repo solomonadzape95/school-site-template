@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { Request, Response } from 'express';
 import { PrismaClient } from '../../generated/prisma';
 import bcrypt from 'bcryptjs';
 
@@ -6,7 +6,7 @@ const router = express.Router();
 const prisma = new PrismaClient();
 
 // Admin login
-router.post('/login', async (req, res) => {
+router.post('/login', async (req : Request, res:Response) => {
   try {
     const { username, password } = req.body;
     
@@ -38,7 +38,7 @@ router.post('/login', async (req, res) => {
 });
 
 // Create new admin
-router.post('/register', async (req, res) => {
+router.post('/register', async (req : Request, res:Response) => {
   try {
     const { username, email, password, role } = req.body;
     
@@ -74,7 +74,7 @@ router.post('/register', async (req, res) => {
 });
 
 // Get all admins
-router.get('/', async (req, res) => {
+router.get('/', async (req : Request, res:Response) => {
   try {
     const admins = await prisma.admin.findMany({
       select: {
@@ -93,7 +93,7 @@ router.get('/', async (req, res) => {
 });
 
 // Get single admin
-router.get('/:id', async (req, res) => {
+router.get('/:id', async (req : Request, res:Response) => {
   try {
     const admin = await prisma.admin.findUnique({
       where: { id: req.params.id },
@@ -116,7 +116,7 @@ router.get('/:id', async (req, res) => {
 });
 
 // Update admin
-router.put('/:id', async (req, res) => {
+router.put('/:id', async (req : Request, res:Response) => {
   try {
     const { username, email, role } = req.body;
     const admin = await prisma.admin.update({
@@ -142,7 +142,7 @@ router.put('/:id', async (req, res) => {
 });
 
 // Change password
-router.patch('/:id/password', async (req, res) => {
+router.patch('/:id/password', async (req : Request, res:Response) => {
   try {
     const { currentPassword, newPassword } = req.body;
     
@@ -175,7 +175,7 @@ router.patch('/:id/password', async (req, res) => {
 });
 
 // Delete admin
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', async (req : Request, res:Response) => {
   try {
     await prisma.admin.delete({
       where: { id: req.params.id }

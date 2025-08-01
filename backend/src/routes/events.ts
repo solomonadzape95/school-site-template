@@ -1,11 +1,11 @@
-import express from 'express';
+import express, { Request, Response } from 'express';
 import { PrismaClient } from '../../generated/prisma';
 
 const router = express.Router();
 const prisma = new PrismaClient();
 
 // Get all events
-router.get('/', async (req, res) => {
+router.get('/', async (req : Request, res:Response) => {
   try {
     const events = await prisma.event.findMany({
       orderBy: { date: 'asc' }
@@ -17,7 +17,7 @@ router.get('/', async (req, res) => {
 });
 
 // Get single event
-router.get('/:slug', async (req, res) => {
+router.get('/:slug', async (req : Request, res:Response) => {
   try {
     const event = await prisma.event.findUnique({
       where: { slug: req.params.slug }
@@ -32,7 +32,7 @@ router.get('/:slug', async (req, res) => {
 });
 
 // Create new event
-router.post('/', async (req, res) => {
+router.post('/', async (req : Request, res:Response) => {
   try {
     const { 
       title, 
@@ -62,7 +62,7 @@ router.post('/', async (req, res) => {
 });
 
 // Update event
-router.put('/:id', async (req, res) => {
+router.put('/:id', async (req : Request, res:Response) => {
   try {
     const { 
       title, 
@@ -93,7 +93,7 @@ router.put('/:id', async (req, res) => {
 });
 
 // Delete event
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', async (req : Request, res:Response) => {
   try {
     await prisma.event.delete({
       where: { id: req.params.id }
@@ -105,7 +105,7 @@ router.delete('/:id', async (req, res) => {
 });
 
 // Get events by date range
-router.get('/date-range/upcoming', async (req, res) => {
+router.get('/date-range/upcoming', async (req : Request, res:Response) => {
   try {
     const today = new Date();
     const events = await prisma.event.findMany({
@@ -123,7 +123,7 @@ router.get('/date-range/upcoming', async (req, res) => {
 });
 
 // Get events by date range
-router.get('/date-range/past', async (req, res) => {
+router.get('/date-range/past', async (req : Request, res:Response) => {
   try {
     const today = new Date();
     const events = await prisma.event.findMany({

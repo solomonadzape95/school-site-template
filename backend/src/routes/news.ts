@@ -1,11 +1,12 @@
-import express from 'express';
+import express, { Request, Response } from 'express';
+
 import { PrismaClient } from '../../generated/prisma';
 
 const router = express.Router();
 const prisma = new PrismaClient();
 
 // Get all published news
-router.get('/', async (req, res) => {
+router.get('/', async (req : Request, res:Response) => {
   try {
     const { published } = req.query;
     const where = published === 'true' ? { isPublished: true } : {};
@@ -21,7 +22,7 @@ router.get('/', async (req, res) => {
 });
 
 // Get single news article
-router.get('/:slug', async (req, res) => {
+router.get('/:slug', async (req : Request, res:Response) => {
   try {
     const news = await prisma.news.findUnique({
       where: { slug: req.params.slug }
@@ -36,7 +37,7 @@ router.get('/:slug', async (req, res) => {
 });
 
 // Create new news article
-router.post('/', async (req, res) => {
+router.post('/', async (req : Request, res:Response) => {
   try {
     const { title, content, slug, imageUrl, tag, author, isPublished } = req.body;
     const news = await prisma.news.create({
@@ -57,7 +58,7 @@ router.post('/', async (req, res) => {
 });
 
 // Update news article
-router.put('/:id', async (req, res) => {
+router.put('/:id', async (req : Request, res:Response) => {
   try {
     const { title, content, slug, imageUrl, tag, author, isPublished } = req.body;
     const news = await prisma.news.update({
@@ -79,7 +80,7 @@ router.put('/:id', async (req, res) => {
 });
 
 // Delete news article
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', async (req : Request, res:Response) => {
   try {
     await prisma.news.delete({
       where: { id: req.params.id }
@@ -91,7 +92,7 @@ router.delete('/:id', async (req, res) => {
 });
 
 // Toggle publish status
-router.patch('/:id/publish', async (req, res) => {
+router.patch('/:id/publish', async (req : Request, res:Response) => {
   try {
     const news = await prisma.news.findUnique({
       where: { id: req.params.id }
