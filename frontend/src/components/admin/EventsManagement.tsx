@@ -10,7 +10,6 @@ interface Event {
   expectedAttendance?: string;
   location: string;
   slug: string;
-  imageUrl?: string;
   createdAt: string;
   updatedAt: string;
 }
@@ -30,7 +29,7 @@ const EventsManagement: React.FC<EventsManagementProps> = ({ admin }) => {
     description: '',
     expectedAttendance: '',
     location: '',
-    imageUrl: ''
+  
   });
 
   const attendanceOptions = [
@@ -92,7 +91,7 @@ const EventsManagement: React.FC<EventsManagementProps> = ({ admin }) => {
       queryClient.invalidateQueries({ queryKey: ['events'] });
       setShowModal(false);
       setEditingEvent(null);
-      setFormData({ title: '', date: '', description: '', expectedAttendance: '', location: '', imageUrl: '' });
+      setFormData({ title: '', date: '', description: '', expectedAttendance: '', location: '',});
     },
     onError: (error: Error) => {
       console.error('Error saving event:', error);
@@ -149,11 +148,11 @@ const EventsManagement: React.FC<EventsManagementProps> = ({ admin }) => {
         description: event.description,
         expectedAttendance: event.expectedAttendance || '',
         location: event.location,
-        imageUrl: event.imageUrl || ''
+      
       });
     } else {
       setEditingEvent(null);
-      setFormData({ title: '', date: '', description: '', expectedAttendance: '', location: '', imageUrl: '' });
+      setFormData({ title: '', date: '', description: '', expectedAttendance: '', location: '', });
     }
     setShowModal(true);
   };
@@ -329,18 +328,7 @@ const EventsManagement: React.FC<EventsManagementProps> = ({ admin }) => {
                     placeholder="Enter event location"
                   />
                 </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Image URL
-                  </label>
-                  <input
-                    type="url"
-                    value={formData.imageUrl}
-                    onChange={(e) => setFormData({...formData, imageUrl: e.target.value})}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    placeholder="https://example.com/image.jpg"
-                  />
-                </div>
+            
                 <div className="flex justify-end space-x-3 pt-4">
                   <button
                     type="button"

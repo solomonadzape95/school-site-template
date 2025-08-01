@@ -66,9 +66,9 @@ function App() {
                     <Route path="/extracurricular" element={<Extracurricular />} />
                     <Route path="/admissions" element={<Admissions />} />
                     <Route path="/news" element={<News />} />
-                    <Route path="/news/:id" element={<NewsDetail />} />
+                    <Route path="/news/:newsSlug" element={<NewsDetail />} />
                     <Route path="/events" element={<Events />} />
-                    <Route path="/events/:id" element={<EventDetail />} />
+                    <Route path="/events/:eventSlug" element={<EventDetail />} />
                     {/* <Route path="/gallery" element={<Gallery />} /> */}
                     <Route path="/login" element={<Login />} />
                     <Route path="/result-checker" element={<ResultChecker />} />

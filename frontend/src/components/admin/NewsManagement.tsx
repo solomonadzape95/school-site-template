@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import { Plus, Edit, Trash2, Eye, Calendar, User, Tag } from 'lucide-react';
 import ConfirmationModal from './ConfirmationModal';
 
-interface News {
+interface NewsItem {
   id: string;
   title: string;
   content: string;
@@ -22,7 +23,7 @@ interface NewsManagementProps {
 const NewsManagement: React.FC<NewsManagementProps> = ({ admin }) => {
   const [showModal, setShowModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const [editingNews, setEditingNews] = useState<News | null>(null);
+  const [editingNews, setEditingNews] = useState<NewsItem | null>(null);
   const [deletingNewsId, setDeletingNewsId] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     title: '',
@@ -43,7 +44,7 @@ const NewsManagement: React.FC<NewsManagementProps> = ({ admin }) => {
       .replace(/^-+|-+$/g, ''); // Remove leading/trailing hyphens
   };
 
-  // Fetch news data
+  // Fetch news data from API
   const { data: news = [], isLoading, error } = useQuery({
     queryKey: ['news'],
     queryFn: async () => {
@@ -51,7 +52,9 @@ const NewsManagement: React.FC<NewsManagementProps> = ({ admin }) => {
       if (!response.ok) {
         throw new Error('Failed to fetch news');
       }
-      return response.json();
+      const data = await response.json();
+      // Only return published news
+      return data.filter((item: NewsItem) => item.isPublished);
     }
   });
 
@@ -133,7 +136,7 @@ const NewsManagement: React.FC<NewsManagementProps> = ({ admin }) => {
     }
   };
 
-  const openModal = (news?: News) => {
+  const openModal = (news?: NewsItem) => {
     if (news) {
       setEditingNews(news);
       setFormData({
@@ -167,86 +170,116 @@ const NewsManagement: React.FC<NewsManagementProps> = ({ admin }) => {
   }
 
   return (
-    <div className="bg-white rounded-lg shadow">
-      <div className="px-6 py-4 border-b border-gray-200">
-        <div className="flex justify-between items-center">
-          <h2 className="text-xl font-semibold text-gray-900">News Management</h2>
-          <button
-            onClick={() => openModal()}
-            className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"
-          >
-            Add News
-          </button>
+    <div className="p-6">
+      {/* Header */}
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6">
+        <div>
+          <h2 className="text-xl font-semibold text-gray-900">News Articles</h2>
+          <p className="mt-1 text-sm text-gray-500">
+            Manage your school's news and announcements
+          </p>
         </div>
+        <button
+          onClick={() => openModal()}
+          className="mt-4 sm:mt-0 inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"
+        >
+          <Plus className="w-4 h-4 mr-2" />
+          Add News
+        </button>
       </div>
 
-      <div className="overflow-x-auto">
-        <table className="min-w-full divide-y divide-gray-200">
-          <thead className="bg-gray-50">
-            <tr>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Title
-              </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Author
-              </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Tag
-              </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Status
-              </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Created
-              </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Actions
-              </th>
-            </tr>
-          </thead>
-          <tbody className="bg-white divide-y divide-gray-200">
-            {news.map((item: News) => (
-              <tr key={item.id} className="hover:bg-gray-50">
-                <td className="px-6 py-4 whitespace-nowrap">
-                  <div className="text-sm font-medium text-gray-900">{item.title}</div>
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap">
-                  <div className="text-sm text-gray-900">{item.author}</div>
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap">
-                  <div className="text-sm text-gray-900">{item.tag}</div>
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap">
+      {/* News Grid */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+        {news.map((newsItem: NewsItem) => (
+          <div key={newsItem.id} className="bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+            <div className="p-6">
+              {/* Header */}
+              <div className="flex items-start justify-between mb-4">
+                <div className="flex-1 min-w-0">
+                  <h3 className="text-lg font-semibold text-gray-900 truncate">
+                    {newsItem.title}
+                  </h3>
+                  <div className="flex items-center mt-2 space-x-4 text-sm text-gray-500">
+                    <div className="flex items-center">
+                      <Calendar className="w-4 h-4 mr-1" />
+                      {new Date(newsItem.createdAt).toLocaleDateString()}
+                    </div>
+                    {newsItem.author && (
+                      <div className="flex items-center">
+                        <User className="w-4 h-4 mr-1" />
+                        {newsItem.author}
+                      </div>
+                    )}
+                  </div>
+                </div>
+                <div className="flex items-center space-x-2 ml-4">
+                  <button
+                    onClick={() => openModal(newsItem)}
+                    className="p-2 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+                    title="Edit"
+                  >
+                    <Edit className="w-4 h-4" />
+                  </button>
+                  <button
+                    onClick={() => handleDelete(newsItem.id)}
+                    className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                    title="Delete"
+                  >
+                    <Trash2 className="w-4 h-4" />
+                  </button>
+                </div>
+              </div>
+
+              {/* Content Preview */}
+              <p className="text-gray-600 text-sm mb-4 line-clamp-3">
+                {newsItem.content}
+              </p>
+
+              {/* Tags and Status */}
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-2">
+                  {newsItem.tag && (
+                    <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                      <Tag className="w-3 h-3 mr-1" />
+                      {newsItem.tag}
+                    </span>
+                  )}
                   <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
-                    item.isPublished 
+                    newsItem.isPublished 
                       ? 'bg-green-100 text-green-800' 
                       : 'bg-yellow-100 text-yellow-800'
                   }`}>
-                    {item.isPublished ? 'Published' : 'Draft'}
+                    {newsItem.isPublished ? 'Published' : 'Draft'}
                   </span>
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                  {new Date(item.createdAt).toLocaleDateString()}
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                  <button
-                    onClick={() => openModal(item)}
-                    className="text-blue-600 hover:text-blue-900 mr-4"
-                  >
-                    Edit
-                  </button>
-                  <button
-                    onClick={() => handleDelete(item.id)}
-                    className="text-red-600 hover:text-red-900"
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+                </div>
+                <div className="text-xs text-gray-400">
+                  {newsItem.slug}
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
+
+      {/* Empty State */}
+      {news.length === 0 && (
+        <div className="text-center py-12">
+          <div className="text-gray-400 mb-4">
+            <svg className="mx-auto h-16 w-16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+            </svg>
+          </div>
+          <h3 className="text-lg font-medium text-gray-900 mb-2">No news articles</h3>
+          <p className="text-gray-500 mb-6">Get started by creating your first news article.</p>
+          <button
+            onClick={() => openModal()}
+            className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+          >
+            <Plus className="w-4 h-4 mr-2" />
+            Add News Article
+          </button>
+        </div>
+      )}
 
       {/* Add/Edit Modal */}
       {showModal && (

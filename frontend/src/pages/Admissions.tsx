@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
-import { User, Phone, CheckCircle, FileText, Calendar, DollarSign, PhoneCall, Loader2 } from 'lucide-react';
+import { User, Phone, CheckCircle, FileText, Calendar, DollarSign, PhoneCall, Loader2, AlertCircle } from 'lucide-react';
 import LazyImage from '../components/LazyImage';
 import classImage from'../assets/play.jpeg'
 
@@ -10,6 +10,7 @@ const Admissions: React.FC = () => {
     phoneNumber: ''
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState('');
 
   // Create applicant mutation
   const createApplicantMutation = useMutation({
@@ -23,13 +24,15 @@ const Admissions: React.FC = () => {
       });
 
       if (!response.ok) {
-        throw new Error('Failed to submit application');
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to submit application');
       }
 
       return response.json();
     },
     onSuccess: () => {
       setIsSubmitted(true);
+      setError('');
       // Reset form after 5 seconds
       setTimeout(() => {
         setIsSubmitted(false);
@@ -38,7 +41,7 @@ const Admissions: React.FC = () => {
     },
     onError: (error: Error) => {
       console.error('Error submitting application:', error);
-      alert('Failed to submit application. Please try again.');
+      setError(error.message);
     }
   });
 
@@ -47,6 +50,10 @@ const Admissions: React.FC = () => {
       ...formData,
       [e.target.name]: e.target.value
     });
+    // Clear error when user starts typing
+    if (error) {
+      setError('');
+    }
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -86,6 +93,17 @@ const Admissions: React.FC = () => {
 
             {!isSubmitted ? (
               <form onSubmit={handleSubmit} className="max-w-md mx-auto space-y-8">
+                {/* Error Message */}
+                {error && (
+                  <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg flex items-start">
+                    <AlertCircle className="w-5 h-5 mr-2 mt-0.5 flex-shrink-0" />
+                    <div>
+                      <p className="font-medium">Application Error</p>
+                      <p className="text-sm mt-1">{error}</p>
+                    </div>
+                  </div>
+                )}
+
                 <div>
                   <label className="block text-base font-medium text-gray-700 mb-3">
                     Student's Full Name

@@ -35,6 +35,23 @@ router.get('/:id', async (req, res) => {
 router.post('/', async (req, res) => {
   try {
     const { name, phoneNumber } = req.body;
+
+    // Check if name already exists
+    const existingApplicant = await prisma.applicant.findFirst({
+      where: {
+        name: {
+          equals: name,
+          mode: 'insensitive' // Case-insensitive search
+        }
+      }
+    });
+
+    if (existingApplicant) {
+      return res.status(400).json({ 
+        error: 'An application with this name already exists. Please contact the school directly if you need to update your application.' 
+      });
+    }
+
     const applicant = await prisma.applicant.create({
       data: {
         name,
@@ -43,6 +60,7 @@ router.post('/', async (req, res) => {
     });
     res.status(201).json(applicant);
   } catch (error) {
+    console.error('Error creating applicant:', error);
     res.status(500).json({ error: 'Failed to create applicant' });
   }
 });
