@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { Menu, X, LogOut, User, Bell } from 'lucide-react';
 import NewsManagement from '../components/admin/NewsManagement';
 import EventsManagement from '../components/admin/EventsManagement';
-import GalleryManagement from '../components/admin/GalleryManagement';
 import ApplicantsManagement from '../components/admin/ApplicantsManagement';
 
 const AdminDashboard: React.FC = () => {
@@ -30,9 +29,9 @@ const AdminDashboard: React.FC = () => {
     setMobileMenuOpen(!mobileMenuOpen);
   };
 
-  const closeMobileMenu = () => {
-    setMobileMenuOpen(false);
-  };
+  // const closeMobileMenu = () => {
+  //   setMobileMenuOpen(false);
+  // };
 
   if (!admin) {
     return (
@@ -48,12 +47,11 @@ const AdminDashboard: React.FC = () => {
   const tabs = [
     { id: 'news', label: 'News Management', icon: '📰' },
     { id: 'events', label: 'Events Management', icon: '🎉' },
-    { id: 'gallery', label: 'Gallery Management', icon: '🖼️' },
     { id: 'applicants', label: 'Applicants', icon: '👥' }
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 flex flex-col">
       {/* Header */}
       <header className="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -126,9 +124,10 @@ const AdminDashboard: React.FC = () => {
         </div>
       )}
 
-      <div className="flex">
-        {/* Sidebar Navigation */}
-        <nav className="hidden md:block w-64 bg-white shadow-sm border-r border-gray-200 min-h-screen">
+      {/* Main Content Area */}
+      <div className="flex-1 flex flex-col md:flex-row">
+        {/* Sidebar Navigation - Desktop Only */}
+        <nav className="hidden md:block w-64 bg-white shadow-sm border-r border-gray-200">
           <div className="p-6">
             <h2 className="text-lg font-semibold text-gray-900 mb-6">Navigation</h2>
             <div className="space-y-2">
@@ -175,10 +174,10 @@ const AdminDashboard: React.FC = () => {
 
         {/* Main Content */}
         <main className="flex-1 min-w-0">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 pb-24 md:pb-6">
             {/* Page Header */}
             <div className="mb-8">
-              <div className="flex items-center justify-between">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
                 <div>
                   <h1 className="text-2xl font-bold text-gray-900">
                     {tabs.find(tab => tab.id === activeTab)?.label}
@@ -187,7 +186,7 @@ const AdminDashboard: React.FC = () => {
                     Manage your school's {activeTab} content
                   </p>
                 </div>
-                <div className="hidden md:flex items-center space-x-3">
+                <div className="hidden md:flex items-center space-x-3 mt-4 sm:mt-0">
                   <div className="flex items-center space-x-2 text-sm text-gray-500">
                     <Bell className="w-4 h-4" />
                     <span>Last updated: {new Date().toLocaleDateString()}</span>
@@ -200,7 +199,6 @@ const AdminDashboard: React.FC = () => {
             <div className="bg-white rounded-lg shadow-sm border border-gray-200">
               {activeTab === 'news' && <NewsManagement admin={admin} />}
               {activeTab === 'events' && <EventsManagement admin={admin} />}
-              {activeTab === 'gallery' && <GalleryManagement admin={admin} />}
               {activeTab === 'applicants' && <ApplicantsManagement />}
             </div>
           </div>

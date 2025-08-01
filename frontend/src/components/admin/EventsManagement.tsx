@@ -18,7 +18,7 @@ interface EventsManagementProps {
   admin: any;
 }
 
-const EventsManagement: React.FC<EventsManagementProps> = ({ admin }) => {
+const EventsManagement: React.FC<EventsManagementProps> = () => {
   const [showModal, setShowModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [editingEvent, setEditingEvent] = useState<Event | null>(null);

@@ -83,7 +83,7 @@ const initialData: SchoolData = {
     }
   ],
   aboutSchool: "Born out of passion through the divine Grace of God, the school was founded by Chief Dr. Pius Chinedu Ogbonnia Okoh on the 1st July 1975. It was formerly known as 'Glasgow' and has grown to become one of the most prestigious educational institutions in the region.",
-  vision: "Holy Ghost Schools strive towards producing pupils/students with intellectual capacity, sound morals, spiritual and social values who will grow to become world-class leaders and responsible citizens.",
+  vision: "Our school strives towards producing pupils/students with intellectual capacity, sound morals, spiritual and social values who will grow to become world-class leaders and responsible citizens.",
   mission: "To provide quality education in a conducive environment that nurtures academic excellence, character development, and spiritual growth, preparing students for future challenges and opportunities.",
   activities: "Our students get involved in activities that not only stimulate the mind but also stimulate the body, to break barriers they never thought possible. From academic competitions to sports, arts, and community service.",
   founderBio: "Nze (Dr.) Pius Chinedum Ogbonnia Okoh was born on May 10, 1950, in Ezi Idume, Ngodo Village Afikpo North Local Government Area of Ebonyi State, Nigeria. A visionary educator and philanthropist, he dedicated his life to providing quality education to children regardless of their financial background. His legacy continues to inspire generations of students and educators."

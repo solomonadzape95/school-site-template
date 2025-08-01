@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { Plus, Edit, Trash2, Eye, Calendar, User, Tag } from 'lucide-react';
+import { Plus, Edit, Trash2, Calendar, User, Tag } from 'lucide-react';
 import ConfirmationModal from './ConfirmationModal';
 
 interface NewsItem {

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Search, Bookmark } from 'lucide-react';
+import { Bookmark } from 'lucide-react';
 
 const ResultChecker: React.FC = () => {
   const [formData, setFormData] = useState({
