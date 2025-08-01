@@ -1,14 +1,46 @@
 import React, { useState } from 'react';
-import { User, Phone, CheckCircle, FileText, Calendar, DollarSign, PhoneCall } from 'lucide-react';
+import { useMutation } from '@tanstack/react-query';
+import { User, Phone, CheckCircle, FileText, Calendar, DollarSign, PhoneCall, Loader2 } from 'lucide-react';
 import LazyImage from '../components/LazyImage';
 import classImage from'../assets/play.jpeg'
 
 const Admissions: React.FC = () => {
   const [formData, setFormData] = useState({
-    studentName: '',
+    name: '',
     phoneNumber: ''
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+
+  // Create applicant mutation
+  const createApplicantMutation = useMutation({
+    mutationFn: async (applicantData: { name: string; phoneNumber: string }) => {
+      const response = await fetch('http://localhost:3000/api/applicants', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(applicantData),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to submit application');
+      }
+
+      return response.json();
+    },
+    onSuccess: () => {
+      setIsSubmitted(true);
+      // Reset form after 5 seconds
+      setTimeout(() => {
+        setIsSubmitted(false);
+        setFormData({ name: '', phoneNumber: '' });
+      }, 5000);
+    },
+    onError: (error: Error) => {
+      console.error('Error submitting application:', error);
+      alert('Failed to submit application. Please try again.');
+    }
+  });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
@@ -19,12 +51,7 @@ const Admissions: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitted(true);
-    // Reset form after 5 seconds
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setFormData({ studentName: '', phoneNumber: '' });
-    }, 5000);
+    createApplicantMutation.mutate(formData);
   };
 
   return (
@@ -33,16 +60,16 @@ const Admissions: React.FC = () => {
       <div className="relative h-96 overflow-hidden">
         <LazyImage 
           src={classImage}
-          alt="The Founder"
+          alt="Admissions"
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-black/50"></div>
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="text-center text-white px-6">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">Admissions</h1>
-          <p className="text-xl max-w-3xl mx-auto">
-            Join Lasa Schools and embark on a journey of academic excellence and personal growth
-          </p>
+            <h1 className="text-4xl md:text-5xl font-bold mb-6">Admissions</h1>
+            <p className="text-xl max-w-3xl mx-auto">
+              Join Lasa Schools and embark on a journey of academic excellence and personal growth
+            </p>
           </div>
         </div>
       </div>
@@ -67,8 +94,8 @@ const Admissions: React.FC = () => {
                     <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                     <input
                       type="text"
-                      name="studentName"
-                      value={formData.studentName}
+                      name="name"
+                      value={formData.name}
                       onChange={handleInputChange}
                       required
                       className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-base"
@@ -97,9 +124,17 @@ const Admissions: React.FC = () => {
 
                 <button
                   type="submit"
-                  className="w-full bg-blue-600 text-white py-4 px-6 rounded-lg font-medium hover:bg-blue-700 transition-colors text-base"
+                  disabled={createApplicantMutation.isPending}
+                  className="w-full bg-blue-600 text-white py-4 px-6 rounded-lg font-medium hover:bg-blue-700 transition-colors text-base disabled:bg-gray-400 disabled:cursor-not-allowed flex items-center justify-center"
                 >
-                  Submit Application
+                  {createApplicantMutation.isPending ? (
+                    <>
+                      <Loader2 className="w-5 h-5 animate-spin mr-2" />
+                      Submitting...
+                    </>
+                  ) : (
+                    'Submit Application'
+                  )}
                 </button>
               </form>
             ) : (
