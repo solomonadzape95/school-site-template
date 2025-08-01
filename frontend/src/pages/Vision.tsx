@@ -1,34 +1,12 @@
 import React from 'react';
 import { useSchool } from '../context/SchoolContext';
-import { Target, Eye, Award, Users } from 'lucide-react';
+// import { Target, Eye, Award, Users } from 'lucide-react';
 import LazyImage from '../components/LazyImage';
 import aboveImage from '../assets/above.jpg';
 
 const Vision: React.FC = () => {
   const { data } = useSchool();
 
-  const visionPillars = [
-    {
-      icon: Target,
-      title: 'Academic Excellence',
-      description: 'Maintaining the highest standards of academic achievement and intellectual growth.'
-    },
-    {
-      icon: Eye,
-      title: 'Innovation',
-      description: 'Embracing modern teaching methods and technology to enhance learning experiences.'
-    },
-    {
-      icon: Award,
-      title: 'Character Building',
-      description: 'Developing strong moral values, leadership skills, and ethical principles.'
-    },
-    {
-      icon: Users,
-      title: 'Community Service',
-      description: 'Instilling a sense of responsibility and commitment to serving society.'
-    }
-  ];
 
   return (
     <div className="min-h-screen bg-gray-50">

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, Calendar, Tag, Share2, Loader2 } from 'lucide-react';
+import { ArrowLeft, Calendar, Tag,  Loader2 } from 'lucide-react';
 import type { NewsItem } from '../lib/types';
 import { useQuery } from '@tanstack/react-query';
 

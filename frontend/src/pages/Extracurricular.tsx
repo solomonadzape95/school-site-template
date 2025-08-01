@@ -1,5 +1,5 @@
 import React from 'react';
-import { Trophy, Music, Users, Award } from 'lucide-react';
+import { Trophy, Music, Award } from 'lucide-react';
 import classImage from '../assets/class.jpg';
 import LazyImage from '../components/LazyImage';
 

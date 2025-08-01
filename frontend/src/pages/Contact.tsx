@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Clock, Send } from 'lucide-react';
+import {  Send } from 'lucide-react';
 import LazyImage from '../components/LazyImage';
 import classImage from '../assets/children.jpg'
 
