@@ -1,0 +1,1 @@
+export const buttonColor = "bg-[#3f3f95]"
