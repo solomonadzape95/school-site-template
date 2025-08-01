@@ -17,6 +17,13 @@
     // "types": ["node"],
     // and npm install -D @types/node
 
+    // Path Aliases
+    "baseUrl": ".",
+    "paths": {
+      "@prisma/client": ["./node_modules/@prisma/client"],
+      "../generated/prisma": ["./node_modules/@prisma/client"]
+    },
+
     // Other Outputs
     "sourceMap": true,
     "declaration": true,
