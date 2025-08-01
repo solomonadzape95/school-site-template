@@ -31,8 +31,11 @@ router.get('/', async (req : Request, res:Response) => {
 // Get single gallery image
 router.get('/:id', async (req : Request, res:Response) => {
   try {
+    const { id } = req.params;
+    if (!id) return res.status(400).json({ error: "Missing gallery id" });
+    
     const image = await prisma.gallery.findUnique({
-      where: { id: req.params.id }
+      where: { id: id }
     });
     if (!image) {
       return res.status(404).json({ error: 'Gallery image not found' });
@@ -66,8 +69,11 @@ router.post('/', async (req : Request, res:Response) => {
 router.put('/:id', async (req : Request, res:Response) => {
   try {
     const { title, description, imageUrl, category, isPublished } = req.body;
+    const { id } = req.params;
+    if (!id) return res.status(400).json({ error: "Missing gallery id" });
+    
     const image = await prisma.gallery.update({
-      where: { id: req.params.id },
+      where: { id: id },
       data: {
         title,
         description,
@@ -85,8 +91,11 @@ router.put('/:id', async (req : Request, res:Response) => {
 // Delete gallery image
 router.delete('/:id', async (req : Request, res:Response) => {
   try {
+    const { id } = req.params;
+    if (!id) return res.status(400).json({ error: "Missing gallery id" });
+    
     await prisma.gallery.delete({
-      where: { id: req.params.id }
+      where: { id: id }
     });
     res.status(204).send();
   } catch (error) {
@@ -97,15 +106,18 @@ router.delete('/:id', async (req : Request, res:Response) => {
 // Toggle publish status
 router.patch('/:id/publish', async (req : Request, res:Response) => {
   try {
+    const { id } = req.params;
+    if (!id) return res.status(400).json({ error: "Missing gallery id" });
+    
     const image = await prisma.gallery.findUnique({
-      where: { id: req.params.id }
+      where: { id: id }
     });
     if (!image) {
       return res.status(404).json({ error: 'Gallery image not found' });
     }
     
     const updatedImage = await prisma.gallery.update({
-      where: { id: req.params.id },
+      where: { id: id },
       data: { isPublished: !image.isPublished }
     });
     res.json(updatedImage);

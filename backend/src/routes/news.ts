@@ -24,8 +24,11 @@ router.get('/', async (req : Request, res:Response) => {
 // Get single news article
 router.get('/:slug', async (req : Request, res:Response) => {
   try {
+    const { slug } = req.params;
+    if (!slug) return res.status(400).json({ error: "Missing news slug" });
+    
     const news = await prisma.news.findUnique({
-      where: { slug: req.params.slug }
+      where: { slug: slug }
     });
     if (!news) {
       return res.status(404).json({ error: 'News article not found' });
@@ -61,8 +64,11 @@ router.post('/', async (req : Request, res:Response) => {
 router.put('/:id', async (req : Request, res:Response) => {
   try {
     const { title, content, slug, imageUrl, tag, author, isPublished } = req.body;
+    const { id } = req.params;
+    if (!id) return res.status(400).json({ error: "Missing news id" });
+    
     const news = await prisma.news.update({
-      where: { id: req.params.id },
+      where: { id: id },
       data: {
         title,
         content,
@@ -82,8 +88,11 @@ router.put('/:id', async (req : Request, res:Response) => {
 // Delete news article
 router.delete('/:id', async (req : Request, res:Response) => {
   try {
+    const { id } = req.params;
+    if (!id) return res.status(400).json({ error: "Missing news id" });
+    
     await prisma.news.delete({
-      where: { id: req.params.id }
+      where: { id: id }
     });
     res.status(204).send();
   } catch (error) {
@@ -94,15 +103,18 @@ router.delete('/:id', async (req : Request, res:Response) => {
 // Toggle publish status
 router.patch('/:id/publish', async (req : Request, res:Response) => {
   try {
+    const { id } = req.params;
+    if (!id) return res.status(400).json({ error: "Missing news id" });
+    
     const news = await prisma.news.findUnique({
-      where: { id: req.params.id }
+      where: { id: id }
     });
     if (!news) {
       return res.status(404).json({ error: 'News article not found' });
     }
     
     const updatedNews = await prisma.news.update({
-      where: { id: req.params.id },
+      where: { id: id },
       data: { isPublished: !news.isPublished }
     });
     res.json(updatedNews);

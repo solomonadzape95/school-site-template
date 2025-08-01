@@ -19,8 +19,11 @@ router.get('/', async (req : Request, res:Response) => {
 // Get single event
 router.get('/:slug', async (req : Request, res:Response) => {
   try {
+    const { slug } = req.params;
+    if (!slug) return res.status(400).json({ error: "Missing event slug" });
+    
     const event = await prisma.event.findUnique({
-      where: { slug: req.params.slug }
+      where: { slug: slug }
     });
     if (!event) {
       return res.status(404).json({ error: 'Event not found' });
@@ -75,7 +78,7 @@ router.put('/:id', async (req : Request, res:Response) => {
     } = req.body;
     
     const { id } = req.params;
-    if (typeof id !== 'undefined' && !id) return res.status(400).json({ error: "Missing event id" });
+    if (!id) return res.status(400).json({ error: "Missing event id" });
 
     const event = await prisma.event.update({
       where: { id: id },
@@ -99,7 +102,7 @@ router.put('/:id', async (req : Request, res:Response) => {
 router.delete('/:id', async (req : Request, res:Response) => {
   try {
     const { id } = req.params;
-    if (typeof id !== 'undefined' && !id) return res.status(400).json({ error: "Missing event id" });
+    if (!id) return res.status(400).json({ error: "Missing event id" });
 
     await prisma.event.delete({
       where: { id: id }
