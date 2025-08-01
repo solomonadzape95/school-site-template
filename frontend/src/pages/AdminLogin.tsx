@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { BACKEND_URL } from '../lib/constants';
 
 const AdminLogin = () => {
   const [username, setUsername] = useState('');
@@ -14,7 +15,7 @@ const AdminLogin = () => {
     setLoading(true);
 
     try {
-      const response = await fetch('http://localhost:3000/api/admin/login', {
+      const response = await fetch(`${BACKEND_URL}/api/admin/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

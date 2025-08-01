@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, Calendar, Tag,  Loader2 } from 'lucide-react';
 import type { NewsItem } from '../lib/types';
 import { useQuery } from '@tanstack/react-query';
+import { BACKEND_URL } from '../lib/constants';
 
 const NewsDetail: React.FC = () => {
   const { newsSlug } = useParams<{ newsSlug: string }>();
@@ -11,7 +12,7 @@ const NewsDetail: React.FC = () => {
   const { data: news = [] as NewsItem[], isLoading, error } = useQuery({
     queryKey: ['news'],
     queryFn: async () => {
-      const response = await fetch(`http://localhost:3000/api/news`);
+      const response = await fetch(`${BACKEND_URL}/api/news`);
       if (!response.ok) {
         throw new Error('Failed to fetch news');
       }

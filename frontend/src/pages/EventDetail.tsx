@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, Calendar, MapPin, Users, Loader2 } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
 import type { EventItem } from '../lib/types';
+import { BACKEND_URL } from '../lib/constants';
 
 const EventDetail: React.FC = () => {
   const { eventSlug } = useParams<{ eventSlug: string }>();
@@ -11,7 +12,7 @@ const EventDetail: React.FC = () => {
   const { data: events = [] as EventItem[], isLoading, error } = useQuery({
     queryKey: ['events'],
     queryFn: async () => {
-      const response = await fetch('http://localhost:3000/api/events');
+      const response = await fetch(`${BACKEND_URL}/api/events`);
       if (!response.ok) {
         throw new Error('Failed to fetch events');
       }

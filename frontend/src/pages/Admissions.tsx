@@ -3,6 +3,7 @@ import { useMutation } from '@tanstack/react-query';
 import { User, Phone, CheckCircle, FileText, PhoneCall, Loader2, AlertCircle } from 'lucide-react';
 import LazyImage from '../components/LazyImage';
 import classImage from'../assets/play.jpeg'
+import { BACKEND_URL } from '../lib/constants';
 
 const Admissions: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -15,7 +16,7 @@ const Admissions: React.FC = () => {
   // Create applicant mutation
   const createApplicantMutation = useMutation({
     mutationFn: async (applicantData: { name: string; phoneNumber: string }) => {
-      const response = await fetch('http://localhost:3000/api/applicants', {
+      const response = await fetch(`${BACKEND_URL}/api/applicants`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import LazyImage from '../components/LazyImage';
 import classImage from '../assets/school.jpg'
 import type { NewsItem } from '../lib/types';
+import { BACKEND_URL } from '../lib/constants';
 
 
 
@@ -16,7 +17,7 @@ const News: React.FC = () => {
   const { data: news = [], isLoading, error } = useQuery({
     queryKey: ['news'],
     queryFn: async () => {
-      const response = await fetch('http://localhost:3000/api/news');
+      const response = await fetch(`${BACKEND_URL}/api/news`);
       if (!response.ok) {
         throw new Error('Failed to fetch news');
       }

@@ -1,5 +1,6 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
+import { BACKEND_URL } from '../../lib/constants';
 
 interface Applicant {
   id: string;
@@ -13,7 +14,7 @@ const ApplicantsManagement: React.FC = () => {
   const { data: applicants = [], isLoading, error } = useQuery({
     queryKey: ['applicants'],
     queryFn: async () => {
-      const response = await fetch('http://localhost:3000/api/applicants');
+      const response = await fetch(`${BACKEND_URL}/api/applicants`);
       if (!response.ok) {
         throw new Error('Failed to fetch applicants');
       }

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { Plus, Edit, Trash2, Calendar, User, Tag } from 'lucide-react';
 import ConfirmationModal from './ConfirmationModal';
+import { BACKEND_URL } from '../../lib/constants';
 
 interface NewsItem {
   id: string;
@@ -48,7 +49,7 @@ const NewsManagement: React.FC<NewsManagementProps> = ({ admin }) => {
   const { data: news = [], isLoading, error } = useQuery({
     queryKey: ['news'],
     queryFn: async () => {
-      const response = await fetch('http://localhost:3000/api/news');
+      const response = await fetch(`${BACKEND_URL}/api/news`);
       if (!response.ok) {
         throw new Error('Failed to fetch news');
       }
@@ -62,8 +63,8 @@ const NewsManagement: React.FC<NewsManagementProps> = ({ admin }) => {
   const newsMutation = useMutation({
     mutationFn: async (newsData: any) => {
       const url = editingNews 
-        ? `http://localhost:3000/api/news/${editingNews.id}`
-        : 'http://localhost:3000/api/news';
+        ? `${BACKEND_URL}/api/news/${editingNews.id}`
+        : `${BACKEND_URL}/api/news`;
       
       const method = editingNews ? 'PUT' : 'POST';
       
@@ -99,7 +100,7 @@ const NewsManagement: React.FC<NewsManagementProps> = ({ admin }) => {
   // Delete news mutation
   const deleteMutation = useMutation({
     mutationFn: async (id: string) => {
-      const response = await fetch(`http://localhost:3000/api/news/${id}`, {
+      const response = await fetch(`${BACKEND_URL}/api/news/${id}`, {
         method: 'DELETE'
       });
 

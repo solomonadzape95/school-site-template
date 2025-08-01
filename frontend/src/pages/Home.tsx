@@ -11,6 +11,7 @@ import logo from '../assets/logo.jpg';
 import childrenImage from '../assets/children.jpg';
 import aboveImage from '../assets/above.jpg';
 import schoolImage from '../assets/school.jpg';
+import { BACKEND_URL } from '../lib/constants';
 
 const Home: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -19,7 +20,7 @@ const Home: React.FC = () => {
   const { data: news = [] as NewsItem[] } = useQuery({
     queryKey: ['news'],
     queryFn: async () => {
-      const response = await fetch('http://localhost:3000/api/news');
+      const response = await fetch(`${BACKEND_URL}/api/news`);
       if (!response.ok) {
         throw new Error('Failed to fetch news');
       }
@@ -34,7 +35,7 @@ const Home: React.FC = () => {
   const { data: events = [] as EventItem[] } = useQuery({
     queryKey: ['events'],
     queryFn: async () => {
-      const response = await fetch('http://localhost:3000/api/events');
+      const response = await fetch(`${BACKEND_URL}/api/events`);
       if (!response.ok) {
         throw new Error('Failed to fetch events');
       }

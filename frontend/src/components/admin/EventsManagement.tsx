@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import ConfirmationModal from './ConfirmationModal';
+import { BACKEND_URL } from '../../lib/constants';
 
 interface Event {
   id: string;
@@ -54,7 +55,7 @@ const EventsManagement: React.FC<EventsManagementProps> = () => {
   const { data: events = [], isLoading, error } = useQuery({
     queryKey: ['events'],
     queryFn: async () => {
-      const response = await fetch('http://localhost:3000/api/events');
+      const response = await fetch(`${BACKEND_URL}/api/events`);
       if (!response.ok) {
         throw new Error('Failed to fetch events');
       }
@@ -66,8 +67,8 @@ const EventsManagement: React.FC<EventsManagementProps> = () => {
   const eventMutation = useMutation({
     mutationFn: async (eventData: any) => {
       const url = editingEvent 
-        ? `http://localhost:3000/api/events/${editingEvent.id}`
-        : 'http://localhost:3000/api/events';
+        ? `${BACKEND_URL}/api/events/${editingEvent.id}`
+        : `${BACKEND_URL}/api/events`;
       
       const method = editingEvent ? 'PUT' : 'POST';
       
@@ -102,7 +103,7 @@ const EventsManagement: React.FC<EventsManagementProps> = () => {
   // Delete event mutation
   const deleteMutation = useMutation({
     mutationFn: async (id: string) => {
-      const response = await fetch(`http://localhost:3000/api/events/${id}`, {
+      const response = await fetch(`${BACKEND_URL}/api/events/${id}`, {
         method: 'DELETE'
       });
 

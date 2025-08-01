@@ -4,6 +4,7 @@ import { Calendar, MapPin, ArrowRight, Loader2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import LazyImage from '../components/LazyImage';
 import classImage from '../assets/bus.jpg'
+import { BACKEND_URL } from '../lib/constants';
 
 interface EventItem {
   id: string;
@@ -25,7 +26,7 @@ const Events: React.FC = () => {
   const { data: events = [], isLoading, error } = useQuery({
     queryKey: ['events'],
     queryFn: async () => {
-      const response = await fetch('http://localhost:3000/api/events');
+      const response = await fetch(`${BACKEND_URL}/api/events`);
       if (!response.ok) {
         throw new Error('Failed to fetch events');
       }
