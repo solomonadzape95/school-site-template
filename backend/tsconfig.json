@@ -2,7 +2,7 @@
   // Visit https://aka.ms/tsconfig to read more about this file
   "compilerOptions": {
     "outDir": "dist",
-    "rootDir": "./",
+    "rootDir": "src",
     // "module": "CommonJS",
     // "target": "ES2017",
     "moduleResolution": "nodenext",
