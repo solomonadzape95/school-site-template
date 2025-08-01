@@ -1,0 +1,67 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+model Applicant {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  name String
+  phoneNumber String
+  createdAt DateTime @default(now())
+}
+
+model News {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  title String
+  content String
+  slug String @unique
+  imageUrl String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  tag String?
+  isPublished Boolean @default(false)
+  author String?
+}
+
+model Event {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  title String
+  date DateTime
+  description String
+  expectedAttendance String?
+  location String
+  slug String @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  imageUrl String?
+}
+
+model Gallery {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  title String
+  description String?
+  imageUrl String
+  category String? // e.g., "events", "students", "facilities", "activities"
+  createdAt DateTime @default(now())
+  isPublished Boolean @default(false)
+}
+
+model Admin {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  username String @unique
+  email String @unique
+  password String
+  role String @default("admin") // admin, super_admin
+  createdAt DateTime @default(now())
+  lastLogin DateTime?
+}
