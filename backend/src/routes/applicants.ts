@@ -20,8 +20,10 @@ router.get('/', async (req : Request, res:Response) => {
 // Get single applicant
 router.get('/:id', async (req : Request, res:Response) => {
   try {
+    const { id } = req.params;
+    if (!id) return res.status(400).json({ error: "Missing applicant id" });
     const applicant = await prisma.applicant.findUnique({
-      where: { id: req.params.id }
+      where: { id: id }
     });
     if (!applicant) {
       return res.status(404).json({ error: 'Applicant not found' });
@@ -70,8 +72,10 @@ router.post('/', async (req : Request, res:Response) => {
 router.put('/:id', async (req : Request, res:Response) => {
   try {
     const { name, phoneNumber } = req.body;
+    const { id } = req.params;
+    if (!id) return res.status(400).json({ error: "Missing applicant id" });
     const applicant = await prisma.applicant.update({
-      where: { id: req.params.id },
+      where: { id: id },
       data: {
         name,
         phoneNumber
@@ -86,8 +90,10 @@ router.put('/:id', async (req : Request, res:Response) => {
 // Delete applicant
 router.delete('/:id', async (req : Request, res:Response) => {
   try {
+    const { id } = req.params;
+    if (!id) return res.status(400).json({ error: "Missing applicant id" });
     await prisma.applicant.delete({
-      where: { id: req.params.id }
+      where: { id: id }
     });
     res.status(204).send();
   } catch (error) {

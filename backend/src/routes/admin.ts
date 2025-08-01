@@ -95,8 +95,11 @@ router.get('/', async (req : Request, res:Response) => {
 // Get single admin
 router.get('/:id', async (req : Request, res:Response) => {
   try {
+    const { id } = req.params;
+    if (!id) return res.status(400).json({ error: "Missing admin id" });
+
     const admin = await prisma.admin.findUnique({
-      where: { id: req.params.id },
+      where: { id: id },
       select: {
         id: true,
         username: true,
@@ -119,8 +122,11 @@ router.get('/:id', async (req : Request, res:Response) => {
 router.put('/:id', async (req : Request, res:Response) => {
   try {
     const { username, email, role } = req.body;
+    const { id } = req.params;
+    if (!id) return res.status(400).json({ error: "Missing admin id" });
+
     const admin = await prisma.admin.update({
-      where: { id: req.params.id },
+      where: { id: id },
       data: {
         username,
         email,
@@ -146,8 +152,11 @@ router.patch('/:id/password', async (req : Request, res:Response) => {
   try {
     const { currentPassword, newPassword } = req.body;
     
+    const { id } = req.params;
+    if (!id) return res.status(400).json({ error: "Missing admin id" });
+
     const admin = await prisma.admin.findUnique({
-      where: { id: req.params.id }
+      where: { id: id }
     });
     
     if (!admin) {
@@ -164,7 +173,7 @@ router.patch('/:id/password', async (req : Request, res:Response) => {
     const hashedPassword = await bcrypt.hash(newPassword, 10);
     
     await prisma.admin.update({
-      where: { id: req.params.id },
+      where: { id: id },
       data: { password: hashedPassword }
     });
     
@@ -177,8 +186,11 @@ router.patch('/:id/password', async (req : Request, res:Response) => {
 // Delete admin
 router.delete('/:id', async (req : Request, res:Response) => {
   try {
+    const { id } = req.params;
+    if (!id) return res.status(400).json({ error: "Missing admin id" });
+
     await prisma.admin.delete({
-      where: { id: req.params.id }
+      where: { id: id }
     });
     res.status(204).send();
   } catch (error) {

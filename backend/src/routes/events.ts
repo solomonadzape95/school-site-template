@@ -74,8 +74,11 @@ router.put('/:id', async (req : Request, res:Response) => {
       imageUrl 
     } = req.body;
     
+    const { id } = req.params;
+    if (typeof id !== 'undefined' && !id) return res.status(400).json({ error: "Missing event id" });
+
     const event = await prisma.event.update({
-      where: { id: req.params.id },
+      where: { id: id },
       data: {
         title,
         date: new Date(date),
@@ -95,8 +98,11 @@ router.put('/:id', async (req : Request, res:Response) => {
 // Delete event
 router.delete('/:id', async (req : Request, res:Response) => {
   try {
+    const { id } = req.params;
+    if (typeof id !== 'undefined' && !id) return res.status(400).json({ error: "Missing event id" });
+
     await prisma.event.delete({
-      where: { id: req.params.id }
+      where: { id: id }
     });
     res.status(204).send();
   } catch (error) {
