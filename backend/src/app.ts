@@ -1,6 +1,6 @@
 import express, { Request, Response } from 'express';
 import cors from "cors";
-import { PrismaClient } from '/generated/prisma';
+import { PrismaClient } from '@generated';
 
 // Import routes
 import applicantsRouter from './routes/applicants';

@@ -20,8 +20,7 @@
     // Path Aliases
     "baseUrl": ".",
     "paths": {
-      "@prisma/client": ["./node_modules/@prisma/client"],
-      "../generated/prisma": ["./node_modules/@prisma/client"]
+      "@generated/*": ["./generated/prisma/*"]
     },
 
     // Other Outputs
