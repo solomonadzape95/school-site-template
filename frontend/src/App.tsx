@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { SchoolProvider } from './context/SchoolContext';
@@ -16,7 +16,7 @@ import News from './pages/News';
 import NewsDetail from './pages/NewsDetail';
 import Events from './pages/Events';
 import EventDetail from './pages/EventDetail';
-import Gallery from './pages/Gallery';
+// import Gallery from './pages/Gallery';
 import Login from './pages/Login';
 import ResultChecker from './pages/ResultChecker';
 import Contact from './pages/Contact';

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
-import { User, Phone, CheckCircle, FileText, Calendar, DollarSign, PhoneCall, Loader2, AlertCircle } from 'lucide-react';
+import { User, Phone, CheckCircle, FileText, PhoneCall, Loader2, AlertCircle } from 'lucide-react';
 import LazyImage from '../components/LazyImage';
 import classImage from'../assets/play.jpeg'
 

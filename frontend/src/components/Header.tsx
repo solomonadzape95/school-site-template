@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Search, ChevronDown, Menu, X } from 'lucide-react';
+import {  ChevronDown, Menu, X } from 'lucide-react';
 import logo from '../assets/logo.jpg';
 
 const Header: React.FC = () => {
