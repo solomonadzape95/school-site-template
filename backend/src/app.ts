@@ -6,7 +6,6 @@ import { PrismaClient } from '../generated/prisma';
 import applicantsRouter from './routes/applicants';
 import newsRouter from './routes/news';
 import eventsRouter from './routes/events';
-import galleryRouter from './routes/gallery';
 import adminRouter from './routes/admin';
 
 // Initialize express
@@ -26,7 +25,7 @@ app.get('/', (req : Request, res:Response) => res.json({ message: 'School Site A
 app.use('/api/applicants', applicantsRouter);
 app.use('/api/news', newsRouter);
 app.use('/api/events', eventsRouter);
-app.use('/api/gallery', galleryRouter);
+// app.use('/api/gallery', galleryRouter);
 app.use('/api/admin', adminRouter);
 
 // Error handling middleware

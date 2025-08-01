@@ -109,69 +109,69 @@ async function main() {
   console.log('✅ Events created:', events.length);
 
   // Create sample gallery images
-  const galleryImages = await Promise.all([
-    prisma.gallery.upsert({
-      where: { id: 'gallery-1' },
-      update: {},
-      create: {
-        id: 'gallery-1',
-        title: 'Students in Science Lab',
-        description: 'Students conducting experiments in our state-of-the-art science laboratory',
-        imageUrl: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=800',
-        category: 'students',
-        isPublished: true
-      }
-    }),
-    prisma.gallery.upsert({
-      where: { id: 'gallery-2' },
-      update: {},
-      create: {
-        id: 'gallery-2',
-        title: 'School Library',
-        description: 'Our well-stocked library providing a quiet space for study and research',
-        imageUrl: 'https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=800',
-        category: 'facilities',
-        isPublished: true
-      }
-    }),
-    prisma.gallery.upsert({
-      where: { id: 'gallery-3' },
-      update: {},
-      create: {
-        id: 'gallery-3',
-        title: 'Sports Day Celebration',
-        description: 'Annual sports day with students participating in various athletic events',
-        imageUrl: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800',
-        category: 'activities',
-        isPublished: true
-      }
-    }),
-    prisma.gallery.upsert({
-      where: { id: 'gallery-4' },
-      update: {},
-      create: {
-        id: 'gallery-4',
-        title: 'Art Exhibition',
-        description: 'Student artwork displayed in our annual art exhibition',
-        imageUrl: 'https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=800',
-        category: 'activities',
-        isPublished: true
-      }
-    }),
-    prisma.gallery.upsert({
-      where: { id: 'gallery-5' },
-      update: {},
-      create: {
-        id: 'gallery-5',
-        title: 'Computer Lab',
-        description: 'Modern computer lab equipped with latest technology for digital learning',
-        imageUrl: 'https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=800',
-        category: 'facilities',
-        isPublished: true
-      }
-    })
-  ]);
-  console.log('✅ Gallery images created:', galleryImages.length);
+  // const galleryImages = await Promise.all([
+  //   prisma.gallery.upsert({
+  //     where: { id: 'gallery-1' },
+  //     update: {},
+  //     create: {
+  //       id: 'gallery-1',
+  //       title: 'Students in Science Lab',
+  //       description: 'Students conducting experiments in our state-of-the-art science laboratory',
+  //       imageUrl: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=800',
+  //       category: 'students',
+  //       isPublished: true
+  //     }
+  //   }),
+  //   prisma.gallery.upsert({
+  //     where: { id: 'gallery-2' },
+  //     update: {},
+  //     create: {
+  //       id: 'gallery-2',
+  //       title: 'School Library',
+  //       description: 'Our well-stocked library providing a quiet space for study and research',
+  //       imageUrl: 'https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=800',
+  //       category: 'facilities',
+  //       isPublished: true
+  //     }
+  //   }),
+  //   prisma.gallery.upsert({
+  //     where: { id: 'gallery-3' },
+  //     update: {},
+  //     create: {
+  //       id: 'gallery-3',
+  //       title: 'Sports Day Celebration',
+  //       description: 'Annual sports day with students participating in various athletic events',
+  //       imageUrl: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800',
+  //       category: 'activities',
+  //       isPublished: true
+  //     }
+  //   }),
+  //   prisma.gallery.upsert({
+  //     where: { id: 'gallery-4' },
+  //     update: {},
+  //     create: {
+  //       id: 'gallery-4',
+  //       title: 'Art Exhibition',
+  //       description: 'Student artwork displayed in our annual art exhibition',
+  //       imageUrl: 'https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=800',
+  //       category: 'activities',
+  //       isPublished: true
+  //     }
+  //   }),
+  //   prisma.gallery.upsert({
+  //     where: { id: 'gallery-5' },
+  //     update: {},
+  //     create: {
+  //       id: 'gallery-5',
+  //       title: 'Computer Lab',
+  //       description: 'Modern computer lab equipped with latest technology for digital learning',
+  //       imageUrl: 'https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=800',
+  //       category: 'facilities',
+  //       isPublished: true
+  //     }
+  //   })
+  // ]);
+  // console.log('✅ Gallery images created:', galleryImages.length);
 
   // Create sample applicants
   const applicants = await Promise.all([
