@@ -8,7 +8,7 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import About from './pages/About';
 import Vision from './pages/Vision';
-import Founder from './pages/Founder';
+// import Founder from './pages/Founder';
 import Curricular from './pages/Curricular';
 import Extracurricular from './pages/Extracurricular';
 import Admissions from './pages/Admissions';
@@ -63,7 +63,7 @@ function App() {
                     <Route path="/" element={<Home />} />
                     <Route path="/about" element={<About />} />
                     <Route path="/vision" element={<Vision />} />
-                    <Route path="/founder" element={<Founder />} />
+                    {/* <Route path="/founder" element={<Founder />} /> */}
                     <Route path="/curricular" element={<Curricular />} />
                     <Route path="/extracurricular" element={<Extracurricular />} />
                     <Route path="/admissions" element={<Admissions />} />
