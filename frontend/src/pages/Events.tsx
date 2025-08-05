@@ -65,7 +65,7 @@ const Events: React.FC = () => {
             <div className="text-center text-white px-6">
               <h1 className="text-4xl md:text-5xl font-bold mb-6">School Events</h1>
               <p className="text-xl max-w-3xl mx-auto">
-                Discover exciting events, celebrations, and activities happening at Lasa Schools
+                Discover exciting events, celebrations, and activities happening at LASA
               </p>
             </div>
           </div>
@@ -94,7 +94,7 @@ const Events: React.FC = () => {
             <div className="text-center text-white px-6">
               <h1 className="text-4xl md:text-5xl font-bold mb-6">School Events</h1>
               <p className="text-xl max-w-3xl mx-auto">
-                Discover exciting events, celebrations, and activities happening at Lasa Schools
+                Discover exciting events, celebrations, and activities happening at LASA
               </p>
             </div>
           </div>
@@ -123,7 +123,7 @@ const Events: React.FC = () => {
           <div className="text-center text-white px-6">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">School Events</h1>
             <p className="text-xl max-w-3xl mx-auto">
-              Discover exciting events, celebrations, and activities happening at Lasa Schools
+              Discover exciting events, celebrations, and activities happening at LASA
             </p>
           </div>
         </div>

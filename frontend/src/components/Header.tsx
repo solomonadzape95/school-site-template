@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import {  ChevronDown, Menu, X } from 'lucide-react';
 import logo from '../assets/logo.jpg';
 
@@ -7,6 +7,7 @@ const Header: React.FC = () => {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate()
 
   const isActive = (path: string) => location.pathname === path;
 
@@ -31,10 +32,11 @@ const Header: React.FC = () => {
       <div className="container mx-auto px-6">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <div className="flex items-center">
-            <img src={logo} width={50} height={50} alt="Lasa Schools Logo" />
+          <div className="flex items-center cursor:pointer" onClick={() => {navigate('/')}}>
+            <img src={logo} width={50} height={50} alt="LASA Logo" />
             <div>
-              <h1 className="text-xl font-bold text-gray-800">LASA SCHOOLS</h1>
+              <h1 className="text-xl font-bold text-gray-800">LASA</h1>
+              <p className="text-xs text-gray-600">Liberal Arts and Science Academy</p>
             </div>
           </div>
 
@@ -48,26 +50,34 @@ const Header: React.FC = () => {
                 HOME
               </Link>
 
-              {/* About Us Dropdown */}
+              {/* Our School Dropdown */}
               <div 
                 className="relative group h-full" 
-                onMouseEnter={() => setActiveDropdown('about')}
+                onMouseEnter={() => setActiveDropdown('school')}
                 onMouseLeave={handleMouseLeave}
               >
                 <button
-                  className={`h-full flex items-center px-4 text-gray-800 hover:text-blue-600 transition-colors border-b-2 border-transparent hover:border-blue-600 ${isActive('/about') || isActive('/vision') || isActive('/founder') ? 'text-blue-600 border-blue-600' : ''}`}
+                  className={`h-full flex items-center px-4 text-gray-800 hover:text-blue-600 transition-colors border-b-2 border-transparent hover:border-blue-600 ${isActive('/about') || isActive('/vision') || isActive('/founder') || isActive('/dress-code') || isActive('/daily-schedule') ? 'text-blue-600 border-blue-600' : ''}`}
                 >
-                  ABOUT US
+                  OUR SCHOOL
                   <ChevronDown className="ml-1 w-4 h-4" />
                 </button>
-                {activeDropdown === 'about' && (
+                {activeDropdown === 'school' && (
                   <div className="absolute top-full left-0 mt-1 w-48 bg-gray-800 text-white rounded-md shadow-lg py-2">
-                    <Link to="/about" className="block px-4 py-2 hover:bg-gray-700">Our School</Link>
-                    <Link to="/vision" className="block px-4 py-2 hover:bg-gray-700">Vision and Mission</Link>
-                    <Link to="/founder" className="block px-4 py-2 hover:bg-gray-700">The Founder</Link>
+                    <Link to="/about" className="block px-4 py-2 hover:bg-gray-700">About Us</Link>
+                    <Link to="/vision" className="block px-4 py-2 hover:bg-gray-700">Our Vision and Mission</Link>
+                    <Link to="/dress-code" className="block px-4 py-2 hover:bg-gray-700">Dress Code</Link>
+                    <Link to="/daily-schedule" className="block px-4 py-2 hover:bg-gray-700">Daily Schedule</Link>
                   </div>
                 )}
               </div>
+
+              <Link 
+                to="/admissions" 
+                className={`h-full flex items-center px-4 text-gray-800 hover:text-blue-600 transition-colors border-b-2 border-transparent hover:border-blue-600 ${isActive('/admissions') ? 'text-blue-600 border-blue-600' : ''}`}
+              >
+                ADMISSIONS
+              </Link>
 
               {/* Academics Dropdown */}
               <div 
@@ -84,17 +94,10 @@ const Header: React.FC = () => {
                 {activeDropdown === 'academics' && (
                   <div className="absolute top-full left-0 mt-1 w-48 bg-gray-800 text-white rounded-md shadow-lg py-2">
                     <Link to="/curricular" className="block px-4 py-2 hover:bg-gray-700">Curricular Activities</Link>
-                    <Link to="/extracurricular" className="block px-4 py-2 hover:bg-gray-700">Extra-curricular Activities</Link>
+                    <Link to="/extracurricular" className="block px-4 py-2 hover:bg-gray-700">Extra-Curricular</Link>
                   </div>
                 )}
               </div>
-
-              <Link 
-                to="/admissions" 
-                className={`h-full flex items-center px-4 text-gray-800 hover:text-blue-600 transition-colors border-b-2 border-transparent hover:border-blue-600 ${isActive('/admissions') ? 'text-blue-600 border-blue-600' : ''}`}
-              >
-                ADMISSIONS
-              </Link>
 
               {/* News & Events Dropdown */}
               <div 
@@ -105,7 +108,7 @@ const Header: React.FC = () => {
                 <button
                   className={`h-full flex items-center px-4 text-gray-800 hover:text-blue-600 transition-colors border-b-2 border-transparent hover:border-blue-600 ${isActive('/news') || isActive('/events') ? 'text-blue-600 border-blue-600' : ''}`}
                 >
-                  NEWS & EVENTS
+                  NEWS AND EVENTS
                   <ChevronDown className="ml-1 w-4 h-4" />
                 </button>
                 {activeDropdown === 'news' && (
@@ -168,23 +171,32 @@ const Header: React.FC = () => {
                 HOME
               </Link>
 
-              {/* About Us Mobile */}
+              {/* Our School Mobile */}
               <div className="relative">
                 <button
-                  onClick={() => handleDropdownToggle('about-mobile')}
-                  className={`w-full text-left px-3 py-2 rounded-md text-base font-medium flex items-center justify-between ${isActive('/about') || isActive('/vision') || isActive('/founder') ? 'text-blue-600 bg-blue-50' : 'text-gray-800 hover:text-blue-600 hover:bg-gray-50'}`}
+                  onClick={() => handleDropdownToggle('school-mobile')}
+                  className={`w-full text-left px-3 py-2 rounded-md text-base font-medium flex items-center justify-between ${isActive('/about') || isActive('/vision') || isActive('/founder') || isActive('/dress-code') || isActive('/daily-schedule') ? 'text-blue-600 bg-blue-50' : 'text-gray-800 hover:text-blue-600 hover:bg-gray-50'}`}
                 >
-                  ABOUT US
-                  <ChevronDown className={`w-4 h-4 transition-transform ${activeDropdown === 'about-mobile' ? 'rotate-180' : ''}`} />
+                  OUR SCHOOL
+                  <ChevronDown className={`w-4 h-4 transition-transform ${activeDropdown === 'school-mobile' ? 'rotate-180' : ''}`} />
                 </button>
-                {activeDropdown === 'about-mobile' && (
+                {activeDropdown === 'school-mobile' && (
                   <div className="pl-4 space-y-1">
-                    <Link to="/about" onClick={closeMobileMenu} className="block px-3 py-2 text-sm text-gray-600 hover:text-blue-600">Our School</Link>
-                    <Link to="/vision" onClick={closeMobileMenu} className="block px-3 py-2 text-sm text-gray-600 hover:text-blue-600">Vision and Mission</Link>
-                    <Link to="/founder" onClick={closeMobileMenu} className="block px-3 py-2 text-sm text-gray-600 hover:text-blue-600">The Founder</Link>
+                    <Link to="/about" onClick={closeMobileMenu} className="block px-3 py-2 text-sm text-gray-600 hover:text-blue-600">About Us</Link>
+                    <Link to="/vision" onClick={closeMobileMenu} className="block px-3 py-2 text-sm text-gray-600 hover:text-blue-600">Our Vision and Mission</Link>
+                    <Link to="/dress-code" onClick={closeMobileMenu} className="block px-3 py-2 text-sm text-gray-600 hover:text-blue-600">Dress Code</Link>
+                    <Link to="/daily-schedule" onClick={closeMobileMenu} className="block px-3 py-2 text-sm text-gray-600 hover:text-blue-600">Daily Schedule</Link>
                   </div>
                 )}
               </div>
+
+              <Link 
+                to="/admissions" 
+                onClick={closeMobileMenu}
+                className={`block px-3 py-2 rounded-md text-base font-medium ${isActive('/admissions') ? 'text-blue-600 bg-blue-50' : 'text-gray-800 hover:text-blue-600 hover:bg-gray-50'}`}
+              >
+                ADMISSIONS
+              </Link>
 
               {/* Academics Mobile */}
               <div className="relative">
@@ -198,18 +210,10 @@ const Header: React.FC = () => {
                 {activeDropdown === 'academics-mobile' && (
                   <div className="pl-4 space-y-1">
                     <Link to="/curricular" onClick={closeMobileMenu} className="block px-3 py-2 text-sm text-gray-600 hover:text-blue-600">Curricular Activities</Link>
-                    <Link to="/extracurricular" onClick={closeMobileMenu} className="block px-3 py-2 text-sm text-gray-600 hover:text-blue-600">Extra-curricular Activities</Link>
+                    <Link to="/extracurricular" onClick={closeMobileMenu} className="block px-3 py-2 text-sm text-gray-600 hover:text-blue-600">Extra-Curricular</Link>
                   </div>
                 )}
               </div>
-
-              <Link 
-                to="/admissions" 
-                onClick={closeMobileMenu}
-                className={`block px-3 py-2 rounded-md text-base font-medium ${isActive('/admissions') ? 'text-blue-600 bg-blue-50' : 'text-gray-800 hover:text-blue-600 hover:bg-gray-50'}`}
-              >
-                ADMISSIONS
-              </Link>
 
               {/* News & Events Mobile */}
               <div className="relative">
@@ -217,7 +221,7 @@ const Header: React.FC = () => {
                   onClick={() => handleDropdownToggle('news-mobile')}
                   className={`w-full text-left px-3 py-2 rounded-md text-base font-medium flex items-center justify-between ${isActive('/news') || isActive('/events') ? 'text-blue-600 bg-blue-50' : 'text-gray-800 hover:text-blue-600 hover:bg-gray-50'}`}
                 >
-                  NEWS & EVENTS
+                  NEWS AND EVENTS
                   <ChevronDown className={`w-4 h-4 transition-transform ${activeDropdown === 'news-mobile' ? 'rotate-180' : ''}`} />
                 </button>
                 {activeDropdown === 'news-mobile' && (

@@ -16,6 +16,8 @@ import News from './pages/News';
 import NewsDetail from './pages/NewsDetail';
 import Events from './pages/Events';
 import EventDetail from './pages/EventDetail';
+import DressCode from './pages/DressCode';
+import DailySchedule from './pages/DailySchedule';
 // import Gallery from './pages/Gallery';
 import Login from './pages/Login';
 import ResultChecker from './pages/ResultChecker';
@@ -65,6 +67,8 @@ function App() {
                     <Route path="/curricular" element={<Curricular />} />
                     <Route path="/extracurricular" element={<Extracurricular />} />
                     <Route path="/admissions" element={<Admissions />} />
+                    <Route path="/dress-code" element={<DressCode />} />
+                    <Route path="/daily-schedule" element={<DailySchedule />} />
                     <Route path="/news" element={<News />} />
                     <Route path="/news/:newsSlug" element={<NewsDetail />} />
                     <Route path="/events" element={<Events />} />

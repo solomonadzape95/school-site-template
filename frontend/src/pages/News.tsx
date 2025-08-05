@@ -56,7 +56,7 @@ const News: React.FC = () => {
             <div className="text-center text-white px-6">
               <h1 className="text-4xl md:text-5xl font-bold mb-6">School News</h1>
               <p className="text-xl max-w-3xl mx-auto">
-                Stay updated with the latest news, achievements, and happenings at Lasa Schools
+                Stay updated with the latest news, achievements, and happenings at LASA
               </p>
             </div>
           </div>
@@ -85,7 +85,7 @@ const News: React.FC = () => {
             <div className="text-center text-white px-6">
               <h1 className="text-4xl md:text-5xl font-bold mb-6">School News</h1>
               <p className="text-xl max-w-3xl mx-auto">
-                Stay updated with the latest news, achievements, and happenings at Lasa Schools
+                Stay updated with the latest news, achievements, and happenings at LASA
               </p>
             </div>
           </div>
@@ -114,7 +114,7 @@ const News: React.FC = () => {
           <div className="text-center text-white px-6">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">School News</h1>
             <p className="text-xl max-w-3xl mx-auto">
-              Stay updated with the latest news, achievements, and happenings at Lasa Schools
+              Stay updated with the latest news, achievements, and happenings at LASA
             </p>
           </div>
         </div>

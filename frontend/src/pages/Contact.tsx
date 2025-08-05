@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {  Send } from 'lucide-react';
+import {  Send, MapPin, Phone, Mail, Facebook } from 'lucide-react';
 import LazyImage from '../components/LazyImage';
 import classImage from '../assets/children.jpg'
 
@@ -40,18 +40,10 @@ const Contact: React.FC = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
-      {/* <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-20">
-        <div className="container mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-6xl font-bold mb-4">Contact Us</h1>
-          <p className="text-xl md:text-2xl opacity-90 max-w-3xl mx-auto">
-            Get in touch with us. We're here to help and answer any questions you may have.
-          </p>
-        </div>
-      </div> */}
- <div className="relative h-96 overflow-hidden">
+      <div className="relative h-96 overflow-hidden">
         <LazyImage 
           src={classImage}
-          alt="The Founder"
+          alt="Contact LASA"
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-black/50"></div>
@@ -64,8 +56,57 @@ const Contact: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {/* Contact Information Section */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-800 mb-4">Get In Touch</h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              Liberal Arts and Science Academy (LASA), Abakaliki is located at the heart of the Capital City of Ebonyi State, 
+              Abakaliki, precisely at 17, Chukwuma Ofoke Street, Omege, Abakaliki, Ebonyi State, Nigeria.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+            <div className="text-center p-6 bg-blue-50 rounded-lg">
+              <MapPin className="w-12 h-12 text-blue-600 mx-auto mb-4" />
+              <h3 className="text-xl font-semibold text-gray-800 mb-2">Address</h3>
+              <p className="text-gray-600">17, Chukwuma Ofoke Street, Omege, Abakaliki, Ebonyi State, Nigeria</p>
+            </div>
+
+            <div className="text-center p-6 bg-green-50 rounded-lg">
+              <Mail className="w-12 h-12 text-green-600 mx-auto mb-4" />
+              <h3 className="text-xl font-semibold text-gray-800 mb-2">Email Address</h3>
+              <a href="mailto:lasaabakaliki@gmail.com" className="text-green-600 font-semibold hover:text-green-700">
+                lasaabakaliki@gmail.com
+              </a>
+            </div>
+
+            <div className="text-center p-6 bg-[#eb4c37]/20 rounded-lg">
+              <Phone className="w-12 h-12 text-[#eb4c37] mx-auto mb-4" />
+              <h3 className="text-xl font-semibold text-gray-800 mb-2">Phone Numbers</h3>
+              <div className="space-y-2">
+                <a href="tel:+2347037933281" className="text-[#eb4c37] font-semibold hover:text-[#eb4c37]/80 block">
+                  +234 703 793 3281
+                </a>
+                <a href="tel:+2348168418960" className="text-[#eb4c37] font-semibold hover:text-[#eb4c37]/80 block">
+                  +234 816 841 8960
+                </a>
+              </div>
+            </div>
+
+            <div className="text-center p-6 bg-purple-50 rounded-lg">
+              <Facebook className="w-12 h-12 text-purple-600 mx-auto mb-4" />
+              <h3 className="text-xl font-semibold text-gray-800 mb-2">Facebook</h3>
+              <p className="text-gray-600">Liberal Arts and Science Academy, Abakaliki</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Contact Form and Map */}
-      <section className="py-16 px-5 bg-white">
+      <section className="py-16 px-5 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Contact Form */}
@@ -191,14 +232,74 @@ const Contact: React.FC = () => {
               </form>
             </div>
 
-              {/* FAQ Section */}
-      <section className="bg-white">
+            {/* Contact Information */}
+            <div>
+              <h2 className="text-3xl font-bold text-gray-800 mb-6">Contact Information</h2>
+              <div className="space-y-8">
+                <div className="bg-white rounded-lg p-6 shadow-lg">
+                  <div className="flex items-start">
+                    <MapPin className="w-6 h-6 text-blue-600 mr-4 mt-1 flex-shrink-0" />
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-800 mb-2">School Address</h3>
+                      <p className="text-gray-600">
+                        17, Chukwuma Ofoke Street, Omege, Abakaliki, Ebonyi State, Nigeria
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-white rounded-lg p-6 shadow-lg">
+                  <div className="flex items-start">
+                    <Phone className="w-6 h-6 text-green-600 mr-4 mt-1 flex-shrink-0" />
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-800 mb-2">Phone Numbers</h3>
+                      <div className="space-y-2">
+                        <a href="tel:+2347037933281" className="text-green-600 hover:text-green-700 block">
+                          +234 703 793 3281
+                        </a>
+                        <a href="tel:+2348168418960" className="text-green-600 hover:text-green-700 block">
+                          +234 816 841 8960
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-white rounded-lg p-6 shadow-lg">
+                  <div className="flex items-start">
+                    <Mail className="w-6 h-6 text-[#eb4c37] mr-4 mt-1 flex-shrink-0" />
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-800 mb-2">Email Address</h3>
+                      <a href="mailto:lasaabakaliki@gmail.com" className="text-[#eb4c37] hover:text-[#eb4c37]/80">
+                        lasaabakaliki@gmail.com
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-white rounded-lg p-6 shadow-lg">
+                  <div className="flex items-start">
+                    <Facebook className="w-6 h-6 text-purple-600 mr-4 mt-1 flex-shrink-0" />
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-800 mb-2">Facebook</h3>
+                      <p className="text-gray-600">Liberal Arts and Science Academy, Abakaliki</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="bg-white py-16">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-gray-800 text-center mb-12">Frequently Asked Questions</h2>
           <div className="max-w-3xl mx-auto space-y-6">
             <div className="bg-gray-50 rounded-lg p-6">
               <h3 className="text-lg font-semibold text-gray-800 mb-2">How do I apply for admission?</h3>
-              <p className="text-gray-600">You can apply for admission by visiting our admissions page or contacting our admissions office directly. We'll guide you through the entire process.</p>
+              <p className="text-gray-600">You can apply for admission by visiting our school at 17, Chukwuma Ofoke Street, Omege, Abakaliki, Ebonyi State, Nigeria, or by filling out our online application form. We'll guide you through the entire process.</p>
             </div>
             <div className="bg-gray-50 rounded-lg p-6">
               <h3 className="text-lg font-semibold text-gray-800 mb-2">What are the school fees?</h3>
@@ -212,15 +313,13 @@ const Contact: React.FC = () => {
               <h3 className="text-lg font-semibold text-gray-800 mb-2">What are the school hours?</h3>
               <p className="text-gray-600">School hours are from 8:00 AM to 3:00 PM Monday through Friday. Office hours are 8:00 AM to 4:00 PM.</p>
             </div>
+            <div className="bg-gray-50 rounded-lg p-6">
+              <h3 className="text-lg font-semibold text-gray-800 mb-2">What sections does LASA comprise?</h3>
+              <p className="text-gray-600">LASA is a group of schools comprising Nursery, Primary and Secondary schools. The Nursery School comprises of Creche, Pre-Nursery & Nursery 1 – 3 classes, the Primary School comprises of Primary 1 – 5 classes, while the Secondary School comprises of both Junior (JSS1 – JSS3 classes) and Senior (SSS 1 – SSS 3 classes) Schools.</p>
+            </div>
           </div>
         </div>
       </section>
-          </div>
-        </div>
-      </section>
-
-  
-   
     </div>
   );
 };

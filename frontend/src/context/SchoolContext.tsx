@@ -82,11 +82,11 @@ const initialData: SchoolData = {
       location: 'Main Hall'
     }
   ],
-  aboutSchool: "Born out of passion through the divine Grace of God, the school was founded by Chief Dr. Pius Chinedu Ogbonnia Okoh on the 1st July 1975. It was formerly known as 'Glasgow' and has grown to become one of the most prestigious educational institutions in the region.",
-  vision: "Our school strives towards producing pupils/students with intellectual capacity, sound morals, spiritual and social values who will grow to become world-class leaders and responsible citizens.",
-  mission: "To provide quality education in a conducive environment that nurtures academic excellence, character development, and spiritual growth, preparing students for future challenges and opportunities.",
-  activities: "Our students get involved in activities that not only stimulate the mind but also stimulate the body, to break barriers they never thought possible. From academic competitions to sports, arts, and community service.",
-  founderBio: "Nze (Dr.) Pius Chinedum Ogbonnia Okoh was born on May 10, 1950, in Ezi Idume, Ngodo Village Afikpo North Local Government Area of Ebonyi State, Nigeria. A visionary educator and philanthropist, he dedicated his life to providing quality education to children regardless of their financial background. His legacy continues to inspire generations of students and educators."
+  aboutSchool: "Liberal Arts and Science Academy (LASA) is a unique and fast-growing prestigious citadel of learning, situated in a serene and conducive environment, at the heart of the Capital City of Ebonyi State, Abakaliki, Nigeria, where children are specially groomed and trained for greater exploits in future. LASA is a group of schools comprising of Nursery, Primary and Secondary schools. Excellence in Education Since 2021.",
+  vision: "To raise generations who will critically and creatively think, skilfully and rightly act, and comfortably live with excellence in a competitive and rapidly changing world.",
+  mission: "To set a positive example in education by promoting self-discipline and excellence in learning in order to develop a sense of uniqueness in our learners and by so doing become self-reliant and role model for others.",
+  activities: "At LASA, we take education beyond the classroom. We build strong foundation in arts, science and technology in a safe and supportive environment. We offer a solid foundation in STEM (Science, Technology, Engineering and Mathematics). We unlock creativity through English, Art, and cultural activities. We promote health, sports, and team spirit – because education is beyond books.",
+  founderBio: "LASA was founded in 2021 with a vision to provide quality education that empowers students with knowledge, skills, and values necessary for lifelong learning and responsible citizenship in a global society. Our leadership team is committed to upholding the school's motto 'Think, Act, Live' and ensuring that every student receives the best possible education in a nurturing and supportive environment."
 };
 
 // Action types

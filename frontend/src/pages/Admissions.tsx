@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
-import { User, Phone, CheckCircle, FileText, PhoneCall, Loader2, AlertCircle } from 'lucide-react';
+import { User, Phone, CheckCircle, FileText, PhoneCall, Loader2, AlertCircle, Mail } from 'lucide-react';
 import LazyImage from '../components/LazyImage';
 import classImage from'../assets/play.jpeg'
 import { BACKEND_URL } from '../lib/constants';
@@ -76,7 +76,7 @@ const Admissions: React.FC = () => {
           <div className="text-center text-white px-6">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">Admissions</h1>
             <p className="text-xl max-w-3xl mx-auto">
-              Join Lasa Schools and embark on a journey of academic excellence and personal growth
+              Join LASA and embark on a journey of academic excellence and personal growth
             </p>
           </div>
         </div>
@@ -88,7 +88,7 @@ const Admissions: React.FC = () => {
             <div className="text-center mb-10">
               <h2 className="text-3xl font-bold text-gray-800 mb-4">Apply Now</h2>
               <p className="text-lg text-gray-600">
-                Start your child's educational journey with Lasa Schools
+                Start your child's educational journey with LASA
               </p>
             </div>
 
@@ -161,7 +161,7 @@ const Admissions: React.FC = () => {
                 <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-6" />
                 <h3 className="text-2xl font-bold text-gray-800 mb-4">Thank You!</h3>
                 <p className="text-lg text-gray-600 mb-6">
-                  Thank you for applying to Lasa Schools. We have received your application and will reach out to you soon.
+                  Thank you for applying to LASA. We have received your application and will reach out to you soon.
                 </p>
                 <p className="text-base text-gray-500">
                   Our admissions team will contact you within 2-3 business days to discuss the next steps.
@@ -184,8 +184,8 @@ const Admissions: React.FC = () => {
                 <div className="flex items-start">
                   <div className="w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center text-white text-sm font-bold mr-4 mt-1 flex-shrink-0">1</div>
                   <div>
-                    <h4 className="font-semibold text-gray-800 mb-2">School Examination and Interview</h4>
-                    <p className="text-gray-600">A pass of the school examination and interview.</p>
+                    <h4 className="font-semibold text-gray-800 mb-2">Entrance Examination</h4>
+                    <p className="text-gray-600">A pass of the entrance examination.</p>
                   </div>
                 </div>
 
@@ -193,7 +193,7 @@ const Admissions: React.FC = () => {
                   <div className="w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center text-white text-sm font-bold mr-4 mt-1 flex-shrink-0">2</div>
                   <div>
                     <h4 className="font-semibold text-gray-800 mb-2">Transfer Certificate</h4>
-                    <p className="text-gray-600">Transfer certificate from the last school attended with last promotion result.</p>
+                    <p className="text-gray-600">Transfer certificate from the last school attended or the last result obtained from such school.</p>
                   </div>
                 </div>
 
@@ -209,7 +209,7 @@ const Admissions: React.FC = () => {
                   <div className="w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center text-white text-sm font-bold mr-4 mt-1 flex-shrink-0">4</div>
                   <div>
                     <h4 className="font-semibold text-gray-800 mb-2">Passport Photographs</h4>
-                    <p className="text-gray-600">4 passport photographs.</p>
+                    <p className="text-gray-600">2 passport photographs.</p>
                   </div>
                 </div>
 
@@ -228,6 +228,14 @@ const Admissions: React.FC = () => {
                     <p className="text-gray-600">Medical certificate from any government approved hospital.</p>
                   </div>
                 </div>
+
+                <div className="flex items-start">
+                  <div className="w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center text-white text-sm font-bold mr-4 mt-1 flex-shrink-0">7</div>
+                  <div>
+                    <h4 className="font-semibold text-gray-800 mb-2">Admission Form</h4>
+                    <p className="text-gray-600">Successful filling of our admission form.</p>
+                  </div>
+                </div>
               </div>
 
               <div className="space-y-6">
@@ -236,11 +244,15 @@ const Admissions: React.FC = () => {
                 <div className="space-y-4">
                   <div className="flex items-center">
                     <FileText className="w-5 h-5 text-blue-600 mr-3" />
-                    <span className="text-gray-700">School prospectus and book list</span>
+                    <span className="text-gray-700">Registration Number</span>
                   </div>
                   <div className="flex items-center">
                     <FileText className="w-5 h-5 text-blue-600 mr-3" />
-                    <span className="text-gray-700">School files</span>
+                    <span className="text-gray-700">School prospectus</span>
+                  </div>
+                  <div className="flex items-center">
+                    <FileText className="w-5 h-5 text-blue-600 mr-3" />
+                    <span className="text-gray-700">List of textbooks</span>
                   </div>
                   <div className="flex items-center">
                     <FileText className="w-5 h-5 text-blue-600 mr-3" />
@@ -248,54 +260,43 @@ const Admissions: React.FC = () => {
                   </div>
                   <div className="flex items-center">
                     <FileText className="w-5 h-5 text-blue-600 mr-3" />
-                    <span className="text-gray-700">Cumulative assessment record folder</span>
-                  </div>
-                  <div className="flex items-center">
-                    <FileText className="w-5 h-5 text-blue-600 mr-3" />
-                    <span className="text-gray-700">Students clearance booklet</span>
-                  </div>
-                  <div className="flex items-center">
-                    <FileText className="w-5 h-5 text-blue-600 mr-3" />
-                    <span className="text-gray-700">School uniform</span>
-                  </div>
-                  <div className="flex items-center">
-                    <FileText className="w-5 h-5 text-blue-600 mr-3" />
-                    <span className="text-gray-700">Boarding prospectus</span>
-                  </div>
-                  <div className="flex items-center">
-                    <FileText className="w-5 h-5 text-blue-600 mr-3" />
-                    <span className="text-gray-700">Copy of students guide</span>
+                    <span className="text-gray-700">Three sets of school uniform</span>
                   </div>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Emergency Contact */}
+          {/* School Location */}
           <div className="bg-white rounded-lg shadow-lg p-10 lg:col-span-2">
             <div className="text-center mb-10">
-              <h2 className="text-3xl font-bold text-gray-800 mb-4">Emergency Contact</h2>
+              <h2 className="text-3xl font-bold text-gray-800 mb-4">Visit Our School</h2>
               <p className="text-lg text-gray-600">
-                For urgent admissions inquiries and support
+                To apply into Liberal Arts and Science Academy, Abakaliki, kindly visit our school
               </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="text-center p-6 bg-blue-50 rounded-lg">
                 <PhoneCall className="w-12 h-12 text-blue-600 mx-auto mb-4" />
-                <h3 className="text-xl font-semibold text-gray-800 mb-2">Admissions Office</h3>
-                <p className="text-gray-600 mb-4">For general admissions inquiries</p>
-                <a href="tel:+2348012345678" className="text-blue-600 font-semibold text-lg hover:text-blue-700">
-                  +234 801 234 5678
-                </a>
+                <h3 className="text-xl font-semibold text-gray-800 mb-2">Phone Numbers</h3>
+                <p className="text-gray-600 mb-4">For admissions inquiries</p>
+                <div className="space-y-2">
+                  <a href="tel:+2347037933281" className="text-blue-600 font-semibold text-lg hover:text-blue-700 block">
+                    +234 703 793 3281
+                  </a>
+                  <a href="tel:+2348168418960" className="text-blue-600 font-semibold text-lg hover:text-blue-700 block">
+                    +234 816 841 8960
+                  </a>
+                </div>
               </div>
 
               <div className="text-center p-6 bg-[#eb4c37]/20 rounded-lg">
-                <PhoneCall className="w-12 h-12 text-[#eb4c37] mx-auto mb-4" />
-                <h3 className="text-xl font-semibold text-gray-800 mb-2">Emergency Hotline</h3>
-                <p className="text-gray-600 mb-4">24/7 emergency support</p>
-                <a href="tel:+2348098765432" className="text-[#eb4c37] font-semibold text-lg hover:[#eb4c37]/80">
-                  +234 809 876 5432
+                <Mail className="w-12 h-12 text-[#eb4c37] mx-auto mb-4" />
+                <h3 className="text-xl font-semibold text-gray-800 mb-2">Email Contact</h3>
+                <p className="text-gray-600 mb-4">Send us an email</p>
+                <a href="mailto:lasaabakaliki@gmail.com" className="text-[#eb4c37] font-semibold text-lg hover:text-[#eb4c37]/80">
+                  lasaabakaliki@gmail.com
                 </a>
               </div>
             </div>

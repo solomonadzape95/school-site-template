@@ -11,77 +11,83 @@ const Founder: React.FC = () => {
       <div className="relative h-96 overflow-hidden">
         <LazyImage 
           src={classImage}
-          alt="The Founder"
+          alt="LASA Leadership"
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-black/50"></div>
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="text-center text-white px-6">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">The Founder</h1>
+            <h1 className="text-4xl md:text-5xl font-bold mb-6">Our Leadership</h1>
             <p className="text-xl max-w-3xl mx-auto">
-              Meet the visionary leader who established Lasa Schools
+              Meet the visionary leaders who established LASA
             </p>
           </div>
         </div>
       </div>
 
       <div className="container mx-auto px-6 py-16">
-        {/* Founder Profile */}
+        {/* School Leadership */}
         <div className="max-w-4xl mx-auto mb-16">
           <div className="bg-white rounded-lg shadow-lg p-12">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
               <div className="h-80 overflow-hidden rounded-lg">
                 <LazyImage 
                   src={classImage}
-                  alt="Chief Dr. Pius Chinedu Ogbonnia Okoh"
+                  alt="LASA Leadership Team"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div>
-                <h2 className="text-3xl font-bold text-gray-800 mb-6">Chief Dr. Pius Chinedu Ogbonnia Okoh</h2>
+                <h2 className="text-3xl font-bold text-gray-800 mb-6">LASA Leadership Team</h2>
                 <p className="text-gray-600 leading-relaxed mb-6">
-                  {data.founderBio}
+                  LASA was founded in 2021 with a vision to provide quality education that empowers students 
+                  with knowledge, skills, and values necessary for lifelong learning and responsible citizenship 
+                  in a global society.
                 </p>
-                {/* <div className="space-y-3">
+                <p className="text-gray-600 leading-relaxed mb-6">
+                  Our leadership team is committed to upholding the school's motto "Think, Act, Live" and 
+                  ensuring that every student receives the best possible education in a nurturing and 
+                  supportive environment.
+                </p>
+                <div className="space-y-3">
                   <div className="flex items-center">
-                    <Award className="w-5 h-5 text-blue-600 mr-3" />
-                    <span className="text-gray-700">Educational Visionary</span>
+                    <div className="w-3 h-3 bg-blue-600 rounded-full mr-3"></div>
+                    <span className="text-gray-700">Educational Excellence</span>
                   </div>
                   <div className="flex items-center">
-                    <BookOpen className="w-5 h-5 text-blue-600 mr-3" />
-                    <span className="text-gray-700">Ph.D. in Education</span>
+                    <div className="w-3 h-3 bg-blue-600 rounded-full mr-3"></div>
+                    <span className="text-gray-700">Character Development</span>
                   </div>
                   <div className="flex items-center">
-                    <Users className="w-5 h-5 text-blue-600 mr-3" />
-                    <span className="text-gray-700">Community Leader</span>
+                    <div className="w-3 h-3 bg-blue-600 rounded-full mr-3"></div>
+                    <span className="text-gray-700">Innovation in Education</span>
                   </div>
-                </div> */}
+                </div>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Founder's Message */}
+        {/* Vision Statement */}
         <div className="max-w-4xl mx-auto mb-16">
           <div className="bg-white rounded-lg shadow-lg p-12">
-            <h2 className="text-3xl font-bold text-gray-800 text-center mb-8">Founder's Message</h2>
+            <h2 className="text-3xl font-bold text-gray-800 text-center mb-8">Our Vision</h2>
             <div className="prose prose-lg max-w-none text-gray-700">
-              <p className="text-xl italic mb-6">
-                "Education is the most powerful weapon which you can use to change the world. 
-                At Lasa Schools, we believe that every child deserves access to quality education 
-                regardless of their financial background."
+              <p className="text-xl italic mb-6 text-center">
+                "To raise generations who will critically and creatively think, skilfully and rightly act, 
+                and comfortably live with excellence in a competitive and rapidly changing world."
               </p>
               <p className="mb-6">
                 Our journey began with a simple yet powerful vision: to create an educational 
                 institution that would not only excel academically but also nurture the character 
-                and values of our students. We wanted to build a school where financial constraints 
-                would never be a barrier to education.
+                and values of our students. We wanted to build a school where children are specially 
+                groomed and trained for greater exploits in future.
               </p>
               <p className="mb-6">
-                Over the years, we have seen this vision come to life through the dedication of 
-                our teachers, the support of our parents, and the hard work of our students. 
-                Today, Lasa Schools stands as a testament to what can be achieved when we put 
-                education and character development at the forefront of our mission.
+                At LASA, we take education beyond the classroom. We build strong foundation in arts, 
+                science and technology in a safe and supportive environment. We are known for our unique 
+                academic superbness, innovative curriculum, and practical entrepreneurial life skills 
+                development for self-reliance.
               </p>
               <p>
                 As we look to the future, we remain committed to our founding principles while 
@@ -93,53 +99,46 @@ const Founder: React.FC = () => {
           </div>
         </div>
 
-        {/* Key Achievements */}
-        {/* <div className="mb-16">
-          <h2 className="text-3xl font-bold text-gray-800 text-center mb-12">Key Achievements</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {achievements.map((achievement, index) => (
-              <div key={index} className="bg-white rounded-lg shadow-lg p-8 text-center">
-                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <achievement.icon className="w-8 h-8 text-blue-600" />
-                </div>
-                <h3 className="text-xl font-semibold text-gray-800 mb-4">{achievement.title}</h3>
-                <p className="text-gray-600">{achievement.description}</p>
-              </div>
-            ))}
-          </div>
-        </div> */}
-
-        {/* Legacy Section */}
-        {/* <div className="bg-white rounded-lg shadow-lg p-12 mb-16">
-          <h2 className="text-3xl font-bold text-gray-800 text-center mb-8">His Legacy</h2>
+        {/* School Achievements */}
+        <div className="mb-16">
+          <h2 className="text-3xl font-bold text-gray-800 text-center mb-12">Our Achievements</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="text-4xl font-bold text-blue-600 mb-2">45+</div>
-              <p className="text-gray-600">Years of Educational Excellence</p>
+            <div className="bg-white rounded-lg shadow-lg p-8 text-center">
+              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <span className="text-2xl font-bold text-blue-600">2021</span>
+              </div>
+              <h3 className="text-xl font-semibold text-gray-800 mb-4">Founded</h3>
+              <p className="text-gray-600">LASA was established with a vision for educational excellence</p>
             </div>
-            <div className="text-center">
-              <div className="text-4xl font-bold text-green-600 mb-2">1000+</div>
-              <p className="text-gray-600">Students Impacted</p>
+            <div className="bg-white rounded-lg shadow-lg p-8 text-center">
+              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <span className="text-2xl font-bold text-green-600">3</span>
+              </div>
+              <h3 className="text-xl font-semibold text-gray-800 mb-4">School Sections</h3>
+              <p className="text-gray-600">Nursery, Primary, and Secondary schools under one institution</p>
             </div>
-            <div className="text-center">
-              <div className="text-4xl font-bold text-purple-600 mb-2">50+</div>
-              <p className="text-gray-600">Qualified Teachers</p>
+            <div className="bg-white rounded-lg shadow-lg p-8 text-center">
+              <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <span className="text-2xl font-bold text-purple-600">4</span>
+              </div>
+              <h3 className="text-xl font-semibold text-gray-800 mb-4">Faculties</h3>
+              <p className="text-gray-600">Comprehensive academic structure for secondary education</p>
             </div>
           </div>
-        </div> */}
+        </div>
 
         {/* Call to Action */}
-        {/* <div className="text-center">
+        <div className="text-center">
           <div className="bg-gradient-to-r from-blue-600 to-blue-800 rounded-lg p-12 text-white">
-            <h3 className="text-3xl font-bold mb-4">Continue His Legacy</h3>
+            <h3 className="text-3xl font-bold mb-4">Join Our Community</h3>
             <p className="text-xl mb-8 opacity-90">
-              Join us in upholding the values and vision of our founder
+              Be part of our journey in shaping the future leaders of tomorrow
             </p>
             <button className="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors text-lg">
               Apply Now
             </button>
           </div>
-        </div> */}
+        </div>
       </div>
     </div>
   );

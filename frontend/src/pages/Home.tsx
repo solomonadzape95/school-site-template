@@ -52,18 +52,18 @@ const Home: React.FC = () => {
   const carouselImages = [
     {
       url: schoolImage,
-      title: 'Welcome To Lasa Schools',
-      subtitle: 'Excellence in Education Since 1975'
+      title: 'Welcome To LASA',
+      subtitle: 'Liberal Arts and Science Academy - Excellence in Education Since 2021'
     },
     {
       url: aboveImage,
-      title: 'State-of-the-Art Facilities',
-      subtitle: 'Modern classrooms and learning environments'
+      title: 'Think, Act, Live',
+      subtitle: 'Our School Motto - Shaping Future Leaders'
     },
     {
       url: childrenImage,
       title: 'Holistic Development',
-      subtitle: 'Academic excellence and character building'
+      subtitle: 'Academic excellence and character building in a nurturing environment'
     }
   ];
 
@@ -102,7 +102,7 @@ const Home: React.FC = () => {
               }`}
             >
               {/* <div className="relative h-full flex items-center z-50 bg-transparent  justify-center"> */}
-                <div className="text-center text-white px-6 bg-transaparent absolute bottom-1/4 mx-auto w-full z-50">
+                <div className="text-center text-white px-6 bg-transaparent absolute bottom-1/4 mx-auto w-full z-10">
                   <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-trasnparent">{image.title}</h1>
                   <p className="text-lg md:text-xl max-w-3xl mx-auto">
                     {image.subtitle}
@@ -154,8 +154,8 @@ const Home: React.FC = () => {
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center">
-            <img src={logo} width={80} height={80} className='mx-auto my-2' alt="Lasa Schools Logo"/>
-            <h2 className="text-3xl font-bold text-[#eb4c37] mb-4">Welcome To Lasa Schools</h2>
+            <img src={logo} width={80} height={80} className='mx-auto my-2' alt="LASA Logo"/>
+            <h2 className="text-3xl font-bold text-[#eb4c37] mb-4">Welcome To LASA</h2>
             <div className="relative mb-8">
               <div className="h-px bg-[#eb4c37]"></div>
               <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
@@ -163,9 +163,14 @@ const Home: React.FC = () => {
               </div>
             </div>
             <p className="text-gray-700 text-lg leading-relaxed">
-              We work endlessly to provide an education friendly environment for skill and knowledge acquisition, 
-              development of good behaviour, attitude and provide virtues needed for sound growth and finance 
-              will never be a barrier for education.
+              Liberal Arts and Science Academy (LASA) is a unique and fast-growing prestigious citadel of learning, 
+              situated in a serene and conducive environment, at the heart of the Capital City of Ebonyi State, 
+              Abakaliki, Nigeria, where children are specially groomed and trained for greater exploits in future.
+            </p>
+            <p className="text-gray-700 text-lg leading-relaxed mt-4">
+              LASA is a group of schools comprising of Nursery, Primary and Secondary schools. The Nursery School 
+              comprises of Creche, Pre-Nursery & Nursery 1 – 3 classes, the Primary School comprises of Primary 1 – 5 classes, 
+              while the Secondary School comprises of both Junior (JSS1 – JSS3 classes) and Senior (SSS 1 – SSS 3 classes) Schools.
             </p>
           </div>
         </div>
@@ -186,8 +191,9 @@ const Home: React.FC = () => {
               </div>
               <div className="p-8 relative flex-1">
                 <p className="text-gray-600 mb-6 text-base leading-relaxed">
-                  Lasa Schools is committed to providing quality education in a nurturing environment. 
-                  Our dedicated teachers and staff work together to ensure every student reaches their full potential.
+                  At LASA, we take education beyond the classroom. We build strong foundation in arts, science and 
+                  technology in a safe and supportive environment. We are known for our unique academic superbness, 
+                  innovative curriculum, and practical entrepreneurial life skills development for self-reliance.
                 </p>
                 <Link 
                   to="/about" 
@@ -209,8 +215,8 @@ const Home: React.FC = () => {
               </div>
               <div className="p-8 flex-1 relative">
                 <p className="text-gray-600 mb-6 text-base leading-relaxed">
-                  Our vision is to be a leading educational institution that nurtures academic excellence, 
-                  character development, and prepares students for future success in a global society.
+                  Our vision is to raise generations who will critically and creatively think, skilfully and rightly act, 
+                  and comfortably live with excellence in a competitive and rapidly changing world.
                 </p>
                 <Link 
                   to="/vision" 
@@ -232,8 +238,9 @@ const Home: React.FC = () => {
               </div>
               <div className="p-8 relative flex-1">
                 <p className="text-gray-600 mb-10 text-base leading-relaxed">
-                  We offer a comprehensive curriculum that includes both academic and extracurricular activities. 
-                  From sports to arts, we encourage students to explore their talents and develop new skills.
+                  We offer a solid foundation in STEM (Science, Technology, Engineering and Mathematics). 
+                  We unlock creativity through English, Art, and cultural activities. We promote health, sports, 
+                  and team spirit – because education is beyond books.
                 </p>
                 <Link 
                   to="/curricular" 
@@ -364,9 +371,10 @@ const Home: React.FC = () => {
       <section className="py-20 bg-white">
         <div className="container mx-auto px-6">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-800 mb-6">The Founder</h2>
+            <h2 className="text-3xl font-bold text-gray-800 mb-6">Our Philosophy</h2>
             <p className="text-gray-600 max-w-2xl mx-auto text-lg">
-              Learn about the visionary leader who established Lasa Schools
+              We see our learners as unique individuals who need a secure, caring and stimulating environment 
+              in which to grow and mature emotionally, intellectually, physically and socially.
             </p>
           </div>
           <div className="bg-white rounded-lg shadow-lg p-10">
@@ -374,19 +382,24 @@ const Home: React.FC = () => {
               <div className="h-64 overflow-hidden rounded-lg">
                 <LazyImage 
                   src={classImage}
-                  alt="Founder"
+                  alt="LASA Philosophy"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div>
-                <h3 className="text-2xl font-bold text-gray-800 mb-6">Chief Dr. Pius Chinedu Ogbonnia Okoh</h3>
+                <h3 className="text-2xl font-bold text-gray-800 mb-6">Think, Act, Live</h3>
                 <p className="text-gray-600 mb-6 text-base leading-relaxed">
-                  A visionary educator and philanthropist, Chief Dr. Pius Chinedu Ogbonnia Okoh founded Lasa Schools 
-                  with the mission to provide quality education accessible to all. His dedication to academic excellence 
-                  and character development has shaped the lives of thousands of students.
+                  At LASA, we emphasize both academic attainment and character development. We also believe that 
+                  a well-rounded education includes experience in the sciences, arts, sports and variety of 
+                  extra-curricular activities.
+                </p>
+                <p className="text-gray-600 mb-6 text-base leading-relaxed">
+                  We believe in the philosophy that learning styles differ. In this regard, we design our teaching 
+                  and learning process to accommodate the different learning styles of our learners through a 
+                  well-planned personalized learning.
                 </p>
                 <Link 
-                  to="/founder" 
+                  to="/about" 
                   className="inline-block mt-8 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors"
                 >
                   READ MORE
