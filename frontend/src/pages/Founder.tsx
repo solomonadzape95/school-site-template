@@ -1,10 +1,8 @@
 import React from 'react';
-import { useSchool } from '../context/SchoolContext';
 import LazyImage from '../components/LazyImage';
 import classImage from '../assets/class.jpg';
 
 const Founder: React.FC = () => {
-  const { data } = useSchool();
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}

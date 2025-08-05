@@ -1,11 +1,9 @@
 import React from 'react';
-import { useSchool } from '../context/SchoolContext';
 import { Users, Award, BookOpen, Heart, Target, Zap, Shield } from 'lucide-react';
 import LazyImage from '../components/LazyImage';
 import schoolImage from '../assets/school.jpg';
 
 const About: React.FC = () => {
-  const { data } = useSchool();
 
   const values = [
     {
