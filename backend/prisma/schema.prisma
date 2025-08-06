@@ -13,11 +13,61 @@ datasource db {
   provider = "mongodb"
   url      = env("DATABASE_URL")
 }
+
 model Applicant {
   id String @id @default(auto()) @map("_id") @db.ObjectId
-  name String
-  phoneNumber String
+  
+  // Student Information
+  surname String
+  otherNames String
+  gender String
+  dateOfBirth DateTime
+  placeOfBirth String
+  stateOfOrigin String
+  nationality String
+  religion String
+  residentialAddress String
+  presentSchool String?
+  currentClass String?
+  bloodGroup String?
+  genotype String?
+  
+  // Parents Information
+  fatherName String
+  fatherOccupation String
+  fatherPhone String
+  fatherEmail String?
+  motherName String
+  motherOccupation String
+  motherPhone String
+  motherEmail String?
+  
+  // Guardian Information (optional)
+  guardianName String?
+  guardianAddress String?
+  guardianOccupation String?
+  guardianHomePhone String?
+  guardianOfficePhone String?
+  guardianEmail String?
+  
+  // Siblings Information
+  hasSiblingsInLASA String
+  sibling1Name String?
+  sibling1Class String?
+  sibling2Name String?
+  sibling2Class String?
+  
+  // Referral Information
+  referralSource String?
+  referredByParent String?
+  referredByStaff String?
+  referredByAlumni String?
+  referredByOthers String?
+  
+  // Application Status
+  status String @default("pending") // pending, accepted, rejected
   createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model News {
