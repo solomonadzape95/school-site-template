@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import { User, CheckCircle, FileText, PhoneCall, Loader2, AlertCircle, Mail, Users, BookOpen } from 'lucide-react';
 import LazyImage from '../components/LazyImage';
-import classImage from'../assets/play.jpeg'
+import classImage from'../assets/play.jpg'
 import { BACKEND_URL } from '../lib/constants';
 
 const Admissions: React.FC = () => {

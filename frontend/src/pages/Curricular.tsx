@@ -1,6 +1,6 @@
 import React from 'react';
 import LazyImage from '../components/LazyImage';
-import classImage from '../assets/class.jpg';
+import classImage from '../assets/class-2.jpg';
 
 
 const Curricular: React.FC = () => {

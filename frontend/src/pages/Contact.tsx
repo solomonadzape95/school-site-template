@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {  Send, MapPin, Phone, Mail, Facebook } from 'lucide-react';
 import LazyImage from '../components/LazyImage';
-import classImage from '../assets/children.jpg'
+import classImage from '../assets/class-2.jpg'
 
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({

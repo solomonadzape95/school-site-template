@@ -1,6 +1,6 @@
 import React from 'react';
 import LazyImage from '../components/LazyImage';
-import classImage from '../assets/class.jpg';
+import classImage from '../assets/play.jpg';
 
 const DressCode: React.FC = () => {
   const uniformSections = [

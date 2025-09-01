@@ -6,7 +6,7 @@ import LazyImage from '../components/LazyImage';
 import type { NewsItem, EventItem } from '../lib/types';
 
 // Import images from assets
-import classImage from '../assets/class.jpg';
+import classImage from '../assets/play.jpg';
 import logo from '../assets/logo.jpg';
 import childrenImage from '../assets/children.jpg';
 import aboveImage from '../assets/above.jpg';
