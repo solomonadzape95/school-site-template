@@ -1,6 +1,5 @@
 import React from 'react';
-import LazyImage from '../components/LazyImage';
-import classImage from '../assets/class.jpg';
+import Image from '../components/common/Image';
 import { Calendar, Clock, FileText } from 'lucide-react';
 
 const DailySchedule: React.FC = () => {
@@ -29,10 +28,11 @@ const DailySchedule: React.FC = () => {
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
       <div className="relative h-96 overflow-hidden">
-        <LazyImage 
-          src={classImage}
+        <Image 
+          usageId="daily-schedule"
           alt="LASA Daily Schedule"
           className="w-full h-full object-cover"
+          priority="high"
         />
         <div className="absolute inset-0 bg-black/50"></div>
         <div className="absolute inset-0 flex items-center justify-center">

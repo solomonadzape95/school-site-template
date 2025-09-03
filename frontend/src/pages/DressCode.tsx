@@ -1,6 +1,5 @@
 import React from 'react';
-import LazyImage from '../components/LazyImage';
-import classImage from '../assets/play.jpg';
+import Image from '../components/common/Image';
 
 const DressCode: React.FC = () => {
   const uniformSections = [
@@ -61,10 +60,11 @@ const DressCode: React.FC = () => {
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
       <div className="relative h-96 overflow-hidden">
-        <LazyImage 
-          src={classImage}
+        <Image 
+          usageId="dress-code"
           alt="LASA Dress Code"
           className="w-full h-full object-cover"
+          priority="high"
         />
         <div className="absolute inset-0 bg-black/50"></div>
         <div className="absolute inset-0 flex items-center justify-center">

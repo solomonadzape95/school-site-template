@@ -1,12 +1,14 @@
 import express, { Request, Response } from 'express';
 import cors from "cors";
 import { PrismaClient } from '../generated/prisma';
+import path from 'path';
 
 // Import routes
 import applicantsRouter from './routes/applicants';
 import newsRouter from './routes/news';
 import eventsRouter from './routes/events';
 import adminRouter from './routes/admin';
+import imagesRouter from './routes/images';
 
 // Initialize express
 const app = express();
@@ -15,6 +17,9 @@ const prisma = new PrismaClient();
 // Middleware
 app.use(cors());
 app.use(express.json());
+
+// Serve uploaded files
+app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 
 const port = process.env.PORT || 3000;
 
@@ -27,6 +32,7 @@ app.use('/api/news', newsRouter);
 app.use('/api/events', eventsRouter);
 // app.use('/api/gallery', galleryRouter);
 app.use('/api/admin', adminRouter);
+app.use('/api/images', imagesRouter);
 
 // Error handling middleware
 app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {

@@ -23,3 +23,15 @@ export interface EventItem {
     createdAt: string;
     updatedAt: string;
   }
+
+export interface ImageInfo {
+  id: string;
+  title: string;
+  imageUrl: string;
+  fileSize: number;
+  mimeType: string;
+  usedAt: string[];
+  isDefault: boolean;
+  createdAt: string;
+  updatedAt: string;
+}

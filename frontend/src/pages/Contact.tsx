@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import {  Send, MapPin, Phone, Mail, Facebook } from 'lucide-react';
-import LazyImage from '../components/LazyImage';
-import classImage from '../assets/class-2.jpg'
+import Image from '../components/common/Image';
 
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -41,10 +40,11 @@ const Contact: React.FC = () => {
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
       <div className="relative h-96 overflow-hidden">
-        <LazyImage 
-          src={classImage}
+        <Image 
+          usageId="contact"
           alt="Contact LASA"
           className="w-full h-full object-cover"
+          priority="high"
         />
         <div className="absolute inset-0 bg-black/50"></div>
         <div className="absolute inset-0 flex items-center justify-center">

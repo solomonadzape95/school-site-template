@@ -2,16 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
 import { ChevronLeft, ChevronRight, Calendar, MapPin } from 'lucide-react';
-import LazyImage from '../components/LazyImage';
+import logo from '../assets/logo.jpg'
 import type { NewsItem, EventItem } from '../lib/types';
 
-// Import images from assets
-import classImage from '../assets/play.jpg';
-import logo from '../assets/logo.jpg';
-import childrenImage from '../assets/children.jpg';
-import aboveImage from '../assets/above.jpg';
-import schoolImage from '../assets/school.jpg';
 import { BACKEND_URL } from '../lib/constants';
+import Image from '../components/common/Image';
 
 const Home: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -51,17 +46,17 @@ const Home: React.FC = () => {
   // Carousel images with dynamic titles and subtitles
   const carouselImages = [
     {
-      url: schoolImage,
+      usageId: 'home',
       title: 'Welcome To LASA',
       subtitle: 'Liberal Arts and Science Academy - Excellence in Education Since 2021'
     },
     {
-      url: aboveImage,
+      usageId: 'hero',
       title: 'Think, Act, Live',
       subtitle: 'Our School Motto - Shaping Future Leaders'
     },
     {
-      url: childrenImage,
+      usageId: 'about',
       title: 'Holistic Development',
       subtitle: 'Academic excellence and character building in a nurturing environment'
     }
@@ -109,10 +104,11 @@ const Home: React.FC = () => {
                   </p>
                 </div>
               {/* </div> */}
-              <LazyImage 
-                src={image.url}
+              <Image 
+                usageId={image.usageId}
                 alt={image.title}
                 className="w-full h-full object-cover"
+                priority="high"
               />
               <div className="absolute inset-0 bg-black/60"></div>
               
@@ -154,7 +150,7 @@ const Home: React.FC = () => {
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center">
-            <img src={logo} width={80} height={80} className='mx-auto my-2' alt="LASA Logo"/>
+           <img src={logo} width={100} height={100} className='mx-aut'/>
             <h2 className="text-3xl font-bold text-[#eb4c37] mb-4">Welcome To LASA</h2>
             <div className="relative mb-8">
               <div className="h-px bg-[#eb4c37]"></div>
@@ -183,8 +179,8 @@ const Home: React.FC = () => {
             {/* Our School */}
             <div className="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col">
               <div className="h-48 overflow-hidden">
-                <LazyImage 
-                  src={schoolImage}
+                <Image 
+                  usageId="home"
                   alt="Our School"
                   className="w-full h-full object-cover"
                 />
@@ -207,8 +203,8 @@ const Home: React.FC = () => {
             {/* Vision and Mission */}
             <div className="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col">
               <div className="h-48 overflow-hidden">
-                <LazyImage 
-                  src={aboveImage}
+                <Image 
+                  usageId="vision"
                   alt="Vision and Mission"
                   className="w-full h-full object-cover"
                 />
@@ -230,8 +226,8 @@ const Home: React.FC = () => {
             {/* Our Activities */}
             <div className="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col h-[30rem]">
               <div className="h-48 overflow-hidden">
-                <LazyImage 
-                  src={childrenImage}
+                <Image 
+                  usageId="activities"
                   alt="Our Activities"
                   className="w-full h-full object-cover"
                 />
@@ -380,8 +376,8 @@ const Home: React.FC = () => {
           <div className="bg-white rounded-lg shadow-lg p-10">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
               <div className="h-64 overflow-hidden rounded-lg">
-                <LazyImage 
-                  src={classImage}
+                <Image 
+                  usageId="philosophy"
                   alt="LASA Philosophy"
                   className="w-full h-full object-cover"
                 />

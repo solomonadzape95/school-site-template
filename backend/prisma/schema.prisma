@@ -96,14 +96,16 @@ model Event {
   imageUrl String?
 }
 
-model Gallery {
+model Image {
   id String @id @default(auto()) @map("_id") @db.ObjectId
-  title String
-  description String?
+  title String @unique
   imageUrl String
-  category String? // e.g., "events", "students", "facilities", "activities"
+  usedAt String[] @default([])
+  fileSize Int // Size in bytes
+  mimeType String
+  isDefault Boolean @default(false)
   createdAt DateTime @default(now())
-  isPublished Boolean @default(false)
+  updatedAt DateTime @updatedAt
 }
 
 model Admin {
