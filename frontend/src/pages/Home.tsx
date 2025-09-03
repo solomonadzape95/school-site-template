@@ -150,7 +150,7 @@ const Home: React.FC = () => {
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center">
-           <img src={logo} width={100} height={100} className='mx-aut'/>
+           <img src={logo} width={100} height={100} className='mx-auto'/>
             <h2 className="text-3xl font-bold text-[#eb4c37] mb-4">Welcome To LASA</h2>
             <div className="relative mb-8">
               <div className="h-px bg-[#eb4c37]"></div>

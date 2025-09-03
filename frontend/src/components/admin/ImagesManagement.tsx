@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Upload, Trash2, Download, RefreshCw, X, Edit, Save, Plus, Minus } from 'lucide-react';
 import { clearImagesCache } from '../../lib/imageUtils';
+import { BACKEND_URL } from '../../lib/constants';
 import { type ImageInfo } from '../../lib/types';
 
 interface UsageLocation {
@@ -43,7 +44,7 @@ const ImagesManagement: React.FC = () => {
   const fetchImages = async () => {
     try {
       setLoading(true);
-      const response = await fetch('http://localhost:3000/api/images');
+      const response = await fetch(`${BACKEND_URL}/api/images`);
       if (response.ok) {
         const data = await response.json();
         setImages(data);
@@ -86,7 +87,7 @@ const ImagesManagement: React.FC = () => {
       formData.append('title', file.name.replace(/\.[^/.]+$/, '')); // Remove file extension for title
       formData.append('usedAt', JSON.stringify([]));
 
-      const response = await fetch('http://localhost:3000/api/images', {
+      const response = await fetch(`${BACKEND_URL}/api/images`, {
         method: 'POST',
         body: formData,
       });
@@ -131,7 +132,7 @@ const ImagesManagement: React.FC = () => {
       const formData = new FormData();
       formData.append('image', newFile);
 
-      const response = await fetch(`http://localhost:3000/api/images/${oldImage.id}/replace`, {
+      const response = await fetch(`${BACKEND_URL}/api/images/${oldImage.id}/replace`, {
         method: 'PUT',
         body: formData,
       });
@@ -158,7 +159,7 @@ const ImagesManagement: React.FC = () => {
 
   const handleUpdateUsage = async (imageId: string, usedAt: string[]) => {
     try {
-      const response = await fetch(`http://localhost:3000/api/images/${imageId}`, {
+      const response = await fetch(`${BACKEND_URL}/api/images/${imageId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -206,7 +207,7 @@ const ImagesManagement: React.FC = () => {
 
     if (window.confirm(`Are you sure you want to delete ${image.title}? This action cannot be undone.`)) {
       try {
-        const response = await fetch(`http://localhost:3000/api/images/${imageId}`, {
+        const response = await fetch(`${BACKEND_URL}/api/images/${imageId}`, {
           method: 'DELETE',
         });
 
@@ -306,7 +307,7 @@ const ImagesManagement: React.FC = () => {
                 </div>
               )}
               <img
-                src={image.imageUrl.startsWith('http') ? image.imageUrl : `http://localhost:3000${image.imageUrl}`}
+                src={image.imageUrl.startsWith('http') ? image.imageUrl : `${BACKEND_URL}${image.imageUrl}`}
                 alt={image.title}
                 className="w-full h-full object-cover"
                 onError={(e) => {
@@ -503,7 +504,7 @@ const ImagesManagement: React.FC = () => {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <div>
                   <img
-                    src={selectedImage.imageUrl.startsWith('http') ? selectedImage.imageUrl : `http://localhost:3000${selectedImage.imageUrl}`}
+                    src={selectedImage.imageUrl.startsWith('http') ? selectedImage.imageUrl : `${BACKEND_URL}${selectedImage.imageUrl}`}
                     alt={selectedImage.title}
                     className="w-full rounded-lg border border-gray-200"
                   />
@@ -552,7 +553,7 @@ const ImagesManagement: React.FC = () => {
                     <button
                       onClick={() => {
                         const link = document.createElement('a');
-                        link.href = selectedImage.imageUrl.startsWith('http') ? selectedImage.imageUrl : `http://localhost:3000${selectedImage.imageUrl}`;
+                        link.href = selectedImage.imageUrl.startsWith('http') ? selectedImage.imageUrl : `${BACKEND_URL}${selectedImage.imageUrl}`;
                         link.download = selectedImage.title;
                         link.click();
                       }}

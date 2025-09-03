@@ -1,4 +1,5 @@
 import {type ImageInfo } from './types';
+import { BACKEND_URL } from './constants';
 
 // Cache for images to avoid repeated API calls
 let imagesCache: ImageInfo[] | null = null;
@@ -10,7 +11,7 @@ const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
  */
 export const fetchImages = async (): Promise<ImageInfo[]> => {
   try {
-    const response = await fetch('http://localhost:3000/api/images');
+    const response = await fetch(`${BACKEND_URL}/api/images`);
     if (response.ok) {
       const data = await response.json();
       imagesCache = data;
@@ -52,7 +53,7 @@ export const getImagesByUsage = async (usageId: string): Promise<ImageInfo[]> =>
  */
 export const getDefaultImage = async (): Promise<ImageInfo | null> => {
   try {
-    const response = await fetch('http://localhost:3000/api/images/default');
+    const response = await fetch(`${BACKEND_URL}/api/images/default`);
     if (response.ok) {
       return await response.json();
     } else {
@@ -94,7 +95,7 @@ export const getImageUrl = (image: ImageInfo | null): string => {
     return image.imageUrl;
   }
   
-  return `http://localhost:3000${image.imageUrl}`;
+  return `${BACKEND_URL}${image.imageUrl}`;
 };
 
 /**
