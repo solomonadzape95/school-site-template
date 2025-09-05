@@ -29,20 +29,21 @@ const Header: React.FC = () => {
 
   return (
     <header className="bg-white shadow-md sticky top-0 z-50">
-      <div className="container mx-auto px-6">
+      <div className="w-11/12 mx-auto px-6">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <div className="flex items-center cursor:pointer" onClick={() => {navigate('/')}}>
             <img src={logo} width={50} height={50} alt="LASA Logo" />
             <div>
               <h1 className="text-xl font-bold text-gray-800">LASA</h1>
-              <p className="text-xs text-gray-600">Liberal Arts and Science Academy</p>
+              <p className="text-xs text-gray-600">Liberal Arts and Science Academy, Abakaliki, Ebonyi State, Nigeria</p>
+              
             </div>
           </div>
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center h-full">
-            <div className="flex items-center h-full space-x-1">
+            <div className="flex items-center h-full space-x-1 text-md">
               <Link 
                 to="/" 
                 className={`h-full flex items-center px-4 text-gray-800 hover:text-blue-600 transition-colors border-b-2 border-transparent hover:border-blue-600 ${isActive('/') ? 'text-blue-600 border-blue-600' : ''}`}
@@ -57,15 +58,18 @@ const Header: React.FC = () => {
                 onMouseLeave={handleMouseLeave}
               >
                 <button
-                  className={`h-full flex items-center px-4 text-gray-800 hover:text-blue-600 transition-colors border-b-2 border-transparent hover:border-blue-600 ${isActive('/about') || isActive('/vision') || isActive('/founder') || isActive('/dress-code') || isActive('/daily-schedule') ? 'text-blue-600 border-blue-600' : ''}`}
+                  className={`h-full flex items-center px-4 text-gray-800 hover:text-blue-600 transition-colors border-b-2 border-transparent hover:border-blue-600 ${isActive('/about') || isActive('/vision') || isActive('/founder') || isActive('/nursery') || isActive('/primary') || isActive('/secondary') || isActive('/dress-code') || isActive('/daily-schedule') ? 'text-blue-600 border-blue-600' : ''}`}
                 >
                   OUR SCHOOL
                   <ChevronDown className="ml-1 w-4 h-4" />
                 </button>
                 {activeDropdown === 'school' && (
-                  <div className="absolute top-full left-0 mt-1 w-48 bg-gray-800 text-white rounded-md shadow-lg py-2">
+                  <div className="absolute top-10/12 left-0 mt-1 w-48 bg-gray-800 text-white rounded-md shadow-lg py-2">
                     <Link to="/about" className="block px-4 py-2 hover:bg-gray-700">About Us</Link>
                     <Link to="/vision" className="block px-4 py-2 hover:bg-gray-700">Our Vision and Mission</Link>
+                    <Link to="/nursery" className="block px-4 py-2 hover:bg-gray-700">Nursery School</Link>
+                    <Link to="/primary" className="block px-4 py-2 hover:bg-gray-700">Primary School</Link>
+                    <Link to="/secondary" className="block px-4 py-2 hover:bg-gray-700">Secondary School</Link>
                     <Link to="/dress-code" className="block px-4 py-2 hover:bg-gray-700">Dress Code</Link>
                     <Link to="/daily-schedule" className="block px-4 py-2 hover:bg-gray-700">Daily Schedule</Link>
                   </div>
@@ -92,7 +96,7 @@ const Header: React.FC = () => {
                   <ChevronDown className="ml-1 w-4 h-4" />
                 </button>
                 {activeDropdown === 'academics' && (
-                  <div className="absolute top-full left-0 mt-1 w-48 bg-gray-800 text-white rounded-md shadow-lg py-2">
+                  <div className="absolute top-10/12 left-0 mt-1 w-48 bg-gray-800 text-white rounded-md shadow-lg py-2">
                     <Link to="/curricular" className="block px-4 py-2 hover:bg-gray-700">Curricular Activities</Link>
                     <Link to="/extracurricular" className="block px-4 py-2 hover:bg-gray-700">Extra-Curricular</Link>
                   </div>
@@ -112,7 +116,7 @@ const Header: React.FC = () => {
                   <ChevronDown className="ml-1 w-4 h-4" />
                 </button>
                 {activeDropdown === 'news' && (
-                  <div className="absolute top-full left-0 mt-1 w-48 bg-gray-800 text-white rounded-md shadow-lg py-2">
+                  <div className="absolute top-10/12 left-0 mt-1 w-48 bg-gray-800 text-white rounded-md shadow-lg py-2">
                     <Link to="/news" className="block px-4 py-2 hover:bg-gray-700">News</Link>
                     <Link to="/events" className="block px-4 py-2 hover:bg-gray-700">Events</Link>
                   </div>
@@ -132,7 +136,7 @@ const Header: React.FC = () => {
                   <ChevronDown className="ml-1 w-4 h-4" />
                 </button>
                 {activeDropdown === 'portal' && (
-                  <div className="absolute top-full left-0 mt-1 w-48 bg-gray-800 text-white rounded-md shadow-lg py-2">
+                  <div className="absolute top-10/12 left-0 mt-1 w-48 bg-gray-800 text-white rounded-md shadow-lg py-2">
                     <Link to="/login" className="block px-4 py-2 hover:bg-gray-700">Login</Link>
                     <Link to="/result-checker" className="block px-4 py-2 hover:bg-gray-700">Result Checker</Link>
                   </div>
@@ -175,7 +179,7 @@ const Header: React.FC = () => {
               <div className="relative">
                 <button
                   onClick={() => handleDropdownToggle('school-mobile')}
-                  className={`w-full text-left px-3 py-2 rounded-md text-base font-medium flex items-center justify-between ${isActive('/about') || isActive('/vision') || isActive('/founder') || isActive('/dress-code') || isActive('/daily-schedule') ? 'text-blue-600 bg-blue-50' : 'text-gray-800 hover:text-blue-600 hover:bg-gray-50'}`}
+                  className={`w-full text-left px-3 py-2 rounded-md text-base font-medium flex items-center justify-between ${isActive('/about') || isActive('/vision') || isActive('/founder') || isActive('/nursery') || isActive('/primary') || isActive('/secondary') || isActive('/dress-code') || isActive('/daily-schedule') ? 'text-blue-600 bg-blue-50' : 'text-gray-800 hover:text-blue-600 hover:bg-gray-50'}`}
                 >
                   OUR SCHOOL
                   <ChevronDown className={`w-4 h-4 transition-transform ${activeDropdown === 'school-mobile' ? 'rotate-180' : ''}`} />
@@ -184,6 +188,9 @@ const Header: React.FC = () => {
                   <div className="pl-4 space-y-1">
                     <Link to="/about" onClick={closeMobileMenu} className="block px-3 py-2 text-sm text-gray-600 hover:text-blue-600">About Us</Link>
                     <Link to="/vision" onClick={closeMobileMenu} className="block px-3 py-2 text-sm text-gray-600 hover:text-blue-600">Our Vision and Mission</Link>
+                    <Link to="/nursery" onClick={closeMobileMenu} className="block px-3 py-2 text-sm text-gray-600 hover:text-blue-600">Nursery School</Link>
+                    <Link to="/primary" onClick={closeMobileMenu} className="block px-3 py-2 text-sm text-gray-600 hover:text-blue-600">Primary School</Link>
+                    <Link to="/secondary" onClick={closeMobileMenu} className="block px-3 py-2 text-sm text-gray-600 hover:text-blue-600">Secondary School</Link>
                     <Link to="/dress-code" onClick={closeMobileMenu} className="block px-3 py-2 text-sm text-gray-600 hover:text-blue-600">Dress Code</Link>
                     <Link to="/daily-schedule" onClick={closeMobileMenu} className="block px-3 py-2 text-sm text-gray-600 hover:text-blue-600">Daily Schedule</Link>
                   </div>

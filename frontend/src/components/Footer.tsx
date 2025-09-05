@@ -132,7 +132,7 @@ const Footer: React.FC = () => {
         <div className="border-t border-gray-700 mt-12 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-300 text-sm">
-              © {currentYear} LASA - Liberal Arts and Science Academy. All rights reserved.
+              © {currentYear} LASA - Liberal Arts and Science Academy, Abakaliki, Ebonyi State, Nigeria. All rights reserved.
             </p>
             <p className="text-gray-400 text-sm mt-2 md:mt-0">
               Motto: Think, Act, Live
