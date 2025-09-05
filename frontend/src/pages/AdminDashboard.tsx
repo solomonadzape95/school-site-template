@@ -4,7 +4,7 @@ import { Menu, X, LogOut, User, Bell } from 'lucide-react';
 import NewsManagement from '../components/admin/NewsManagement';
 import EventsManagement from '../components/admin/EventsManagement';
 import ApplicantsManagement from '../components/admin/ApplicantsManagement';
-import ImagesManagement from '../components/admin/ImagesManagement';
+// import ImagesManagement from '../components/admin/ImagesManagement';
 
 const AdminDashboard: React.FC = () => {
   const [activeTab, setActiveTab] = useState('news');
@@ -202,7 +202,7 @@ const AdminDashboard: React.FC = () => {
               {activeTab === 'news' && <NewsManagement admin={admin} />}
               {activeTab === 'events' && <EventsManagement admin={admin} />}
               {activeTab === 'applicants' && <ApplicantsManagement />}
-              {activeTab === 'images' && <ImagesManagement />}
+              {/* {activeTab === 'images' && <ImagesManagement />} */}
             </div>
           </div>
         </main>

@@ -1,6 +1,11 @@
 import React from 'react';
 import { GraduationCap, Microscope, BookOpen, Briefcase, Users, Target, Globe, Award } from 'lucide-react';
-import Image from '../components/common/Image';
+// import Image from '../components/common/Image';
+import LazyImage from '../components/LazyImage';
+import school from '../assets/secondary.jpg';
+import classImg from '../assets/bus.jpg';
+import class2 from '../assets/class-2.jpg';
+import above from '../assets/playing.jpg';
 
 const Secondary: React.FC = () => {
   const faculties = [
@@ -74,11 +79,10 @@ const Secondary: React.FC = () => {
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
       <div className="relative h-96 overflow-hidden">
-                 <Image 
-           usageId="secondary-hero"
+                 <LazyImage 
+           src={school}
            alt="LASA Secondary School - Students in modern science laboratory"
            className="w-full h-full object-cover"
-           priority="high"
          />
         <div className="absolute inset-0 bg-black/50"></div>
         <div className="absolute inset-0 flex items-center justify-center">
@@ -168,8 +172,8 @@ const Secondary: React.FC = () => {
           <h2 className="text-3xl font-bold text-gray-800 text-center mb-12">Secondary School Life</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-              <Image 
-                usageId="secondary-chemistry-lab"
+              <LazyImage 
+                src={classImg}
                 alt="Secondary students conducting chemistry experiments"
                 className="w-full h-64 object-cover"
               />
@@ -179,8 +183,8 @@ const Secondary: React.FC = () => {
               </div>
             </div>
             <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-              <Image 
-                usageId="secondary-library"
+              <LazyImage 
+                src={class2}
                 alt="Secondary students studying in the school library"
                 className="w-full h-64 object-cover"
               />
@@ -190,8 +194,8 @@ const Secondary: React.FC = () => {
               </div>
             </div>
             <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-              <Image 
-                usageId="secondary-sports-field"
+              <LazyImage 
+                src={above}
                 alt="Secondary students participating in sports activities"
                 className="w-full h-64 object-cover"
               />

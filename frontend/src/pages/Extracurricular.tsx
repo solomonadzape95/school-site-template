@@ -1,6 +1,8 @@
 import React from 'react';
 import { Trophy, Music, Award, Users, Heart, BookOpen, Palette, Globe } from 'lucide-react';
-import Image from '../components/common/Image';
+// import Image from '../components/common/Image';
+import LazyImage from '../components/LazyImage';
+import play from '../assets/playing.jpg';
 
 const Extracurricular: React.FC = () => {
   const activities = [
@@ -69,11 +71,10 @@ const Extracurricular: React.FC = () => {
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
       <div className="relative h-96 overflow-hidden">
-        <Image 
-          usageId="extracurriculars"
+        <LazyImage 
+          src={play}
           alt="LASA Extra-curricular Activities"
           className="w-full h-full object-cover"
-          priority="high"
         />
         <div className="absolute inset-0 bg-black/50"></div>
         <div className="absolute inset-0 flex items-center justify-center">

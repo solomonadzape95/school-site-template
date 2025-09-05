@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import { User, CheckCircle, FileText, PhoneCall, Loader2, AlertCircle, Mail, Users, BookOpen } from 'lucide-react';
-import Image from '../components/common/Image';
+// import Image from '../components/common/Image';
+import LazyImage from '../components/LazyImage';
+import school from '../assets/school.jpg';
 import { BACKEND_URL } from '../lib/constants';
 
 const Admissions: React.FC = () => {
@@ -153,11 +155,10 @@ const Admissions: React.FC = () => {
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
       <div className="relative h-96 overflow-hidden">
-        <Image 
-          usageId="admissions"
+        <LazyImage 
+          src={school}
           alt="Admissions"
           className="w-full h-full object-cover"
-          priority="high"
         />
         <div className="absolute inset-0 bg-black/50"></div>
         <div className="absolute inset-0 flex items-center justify-center">

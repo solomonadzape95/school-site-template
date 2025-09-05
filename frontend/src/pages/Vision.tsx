@@ -1,6 +1,8 @@
 import React from 'react';
 // import { Target, Eye, Award, Users } from 'lucide-react';
-import Image from '../components/common/Image';
+// import Image from '../components/common/Image';
+import LazyImage from '../components/LazyImage';
+import children from '../assets/school.jpg';
 
 const Vision: React.FC = () => {
 
@@ -9,11 +11,10 @@ const Vision: React.FC = () => {
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
       <div className="relative h-96 overflow-hidden">
-        <Image 
-          usageId="vision"
+        <LazyImage 
+          src={children}
           alt="Vision and Mission"
           className="w-full h-full object-cover"
-          priority="high"
         />
         <div className="absolute inset-0 bg-black/50"></div>
         <div className="absolute inset-0 flex items-center justify-center">

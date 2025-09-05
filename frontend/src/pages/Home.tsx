@@ -6,7 +6,13 @@ import logo from '../assets/logo.jpg'
 import type { NewsItem, EventItem } from '../lib/types';
 
 import { BACKEND_URL } from '../lib/constants';
-import Image from '../components/common/Image';
+// import Image from '../components/common/Image';
+import LazyImage from '../components/LazyImage';
+import school from '../assets/class-again.jpg';
+import children from '../assets/children.jpg';
+import classImg from '../assets/class.jpg';
+import play from '../assets/play.jpg';
+import above from '../assets/above.jpg';
 
 const Home: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -48,16 +54,19 @@ const Home: React.FC = () => {
     {
       usageId: 'home',
       title: 'Welcome To LASA',
+      src: children,
       subtitle: 'Liberal Arts and Science Academy - Excellence in Education Since 2021'
     },
     {
       usageId: 'hero',
       title: 'Think, Act, Live',
+      src: above,
       subtitle: 'Our School Motto - Shaping Future Leaders'
     },
     {
       usageId: 'about',
       title: 'Holistic Development',
+      src:school,
       subtitle: 'Academic excellence and character building in a nurturing environment'
     }
   ];
@@ -104,11 +113,10 @@ const Home: React.FC = () => {
                   </p>
                 </div>
               {/* </div> */}
-              <Image 
-                usageId={image.usageId}
+              <LazyImage 
+                src={image.src}
                 alt={image.title}
                 className="w-full h-full object-cover"
-                priority="high"
               />
               <div className="absolute inset-0 bg-black/60"></div>
               
@@ -179,8 +187,8 @@ const Home: React.FC = () => {
             {/* Our School */}
             <div className="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col">
               <div className="h-48 overflow-hidden">
-                <Image 
-                  usageId="home"
+                <LazyImage 
+                  src={play}
                   alt="Our School"
                   className="w-full h-full object-cover"
                 />
@@ -203,8 +211,8 @@ const Home: React.FC = () => {
             {/* Vision and Mission */}
             <div className="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col">
               <div className="h-48 overflow-hidden">
-                <Image 
-                  usageId="vision"
+                <LazyImage 
+                  src={classImg}
                   alt="Vision and Mission"
                   className="w-full h-full object-cover"
                 />
@@ -226,8 +234,8 @@ const Home: React.FC = () => {
             {/* Our Activities */}
             <div className="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col h-[30rem]">
               <div className="h-48 overflow-hidden">
-                <Image 
-                  usageId="activities"
+                <LazyImage 
+                  src={above}
                   alt="Our Activities"
                   className="w-full h-full object-cover"
                 />
@@ -376,8 +384,8 @@ const Home: React.FC = () => {
           <div className="bg-white rounded-lg shadow-lg p-10">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
               <div className="h-64 overflow-hidden rounded-lg">
-                <Image 
-                  usageId="philosophy"
+                <LazyImage 
+                  src={children}
                   alt="LASA Philosophy"
                   className="w-full h-full object-cover"
                 />

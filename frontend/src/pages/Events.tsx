@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { Calendar, MapPin, ArrowRight, Loader2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import Image from '../components/common/Image';
+// import Image from '../components/common/Image';
+import LazyImage from '../components/LazyImage';
+import school from '../assets/children.jpg';
 import { BACKEND_URL } from '../lib/constants';
 
 interface EventItem {
@@ -54,11 +56,10 @@ const Events: React.FC = () => {
     return (
       <div className="min-h-screen bg-gray-50">
         <div className="relative h-96 overflow-hidden">
-          <Image 
-            usageId="events"
+          <LazyImage 
+            src={school}
             alt="School Events"
             className="w-full h-full object-cover"
-            priority="high"
           />
           <div className="absolute inset-0 bg-black/50"></div>
           <div className="absolute inset-0 flex items-center justify-center">
@@ -84,11 +85,10 @@ const Events: React.FC = () => {
     return (
       <div className="min-h-screen bg-gray-50">
         <div className="relative h-96 overflow-hidden">
-          <Image 
-            usageId="events"
+          <LazyImage 
+            src={school}
             alt="School Events"
             className="w-full h-full object-cover"
-            priority="high"
           />
           <div className="absolute inset-0 bg-black/50"></div>
           <div className="absolute inset-0 flex items-center justify-center">
@@ -114,11 +114,10 @@ const Events: React.FC = () => {
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
       <div className="relative h-96 overflow-hidden">
-        <Image 
-          usageId="events"
+        <LazyImage 
+          src={school}
           alt="School Events"
           className="w-full h-full object-cover"
-          priority="high"
         />
         <div className="absolute inset-0 bg-black/50"></div>
         <div className="absolute inset-0 flex items-center justify-center">

@@ -1,6 +1,11 @@
 import React from 'react';
 import { Baby, Heart,  BookOpen, Play, Shield } from 'lucide-react';
-import Image from '../components/common/Image';
+// import Image from '../components/common/Image';
+import LazyImage from '../components/LazyImage';
+import children from '../assets/nursery.jpg';
+import play from '../assets/playing.jpg';
+import classImg from '../assets/class.jpg';
+import class2 from '../assets/children.jpg';
 
 const Nursery: React.FC = () => {
   const features = [
@@ -53,11 +58,10 @@ const Nursery: React.FC = () => {
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
       <div className="relative h-96 overflow-hidden">
-                 <Image 
-           usageId="nursery-hero"
+                 <LazyImage 
+           src={children}
            alt="LASA Nursery School - Children playing and learning"
            className="w-full h-full object-cover"
-           priority="high"
          />
         <div className="absolute inset-0 bg-black/50"></div>
         <div className="absolute inset-0 flex items-center justify-center">
@@ -196,8 +200,8 @@ const Nursery: React.FC = () => {
           <h2 className="text-3xl font-bold text-gray-800 text-center mb-12">Nursery Life</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                          <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-               <Image 
-                 usageId="nursery-playground"
+               <LazyImage 
+                 src={play}
                  alt="Nursery children playing in outdoor playground"
                  className="w-full h-64 object-cover"
                />
@@ -207,8 +211,8 @@ const Nursery: React.FC = () => {
                </div>
              </div>
              <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-               <Image 
-                 usageId="nursery-classroom"
+               <LazyImage 
+                 src={classImg}
                  alt="Nursery classroom with children learning"
                  className="w-full h-64 object-cover"
                />
@@ -218,8 +222,8 @@ const Nursery: React.FC = () => {
                </div>
              </div>
              <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-               <Image 
-                 usageId="nursery-mealtime"
+               <LazyImage 
+                 src={class2}
                  alt="Nursery children having nutritious meals"
                  className="w-full h-64 object-cover"
                />

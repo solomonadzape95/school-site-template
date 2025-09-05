@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { Search, Filter, Calendar, Tag, ArrowRight, Loader2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import Image from '../components/common/Image';
+// import Image from '../components/common/Image';
+import LazyImage from '../components/LazyImage';
+import school from '../assets/class-2.jpg';
 import type { NewsItem } from '../lib/types';
 import { BACKEND_URL } from '../lib/constants';
 
@@ -45,11 +47,10 @@ const News: React.FC = () => {
     return (
       <div className="min-h-screen bg-gray-50">
         <div className="relative h-96 overflow-hidden">
-          <Image 
-            usageId="news"
+          <LazyImage 
+            src={school}
             alt="School News"
             className="w-full h-full object-cover"
-            priority="high"
           />
           <div className="absolute inset-0 bg-black/50"></div>
           <div className="absolute inset-0 flex items-center justify-center">
@@ -75,11 +76,10 @@ const News: React.FC = () => {
     return (
       <div className="min-h-screen bg-gray-50">
         <div className="relative h-96 overflow-hidden">
-          <Image 
-            usageId="news"
+          <LazyImage 
+            src={school}
             alt="School News"
             className="w-full h-full object-cover"
-            priority="high"
           />
           <div className="absolute inset-0 bg-black/50"></div>
           <div className="absolute inset-0 flex items-center justify-center">
@@ -105,18 +105,17 @@ const News: React.FC = () => {
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
       <div className="relative h-96 overflow-hidden">
-        <Image 
-          usageId="news"
+        <LazyImage 
+          src={school}
           alt="School News"
           className="w-full h-full object-cover"
-          priority="high"
         />
         <div className="absolute inset-0 bg-black/50"></div>
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="text-center text-white px-6">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">School News</h1>
             <p className="text-xl max-w-3xl mx-auto">
-              Stay updated with the latest news, achievements, and happenings at LASA
+              Stay updated with the latest news, achievements, and happenings at  
             </p>
           </div>
         </div>
