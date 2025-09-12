@@ -187,7 +187,7 @@ const News: React.FC = () => {
                     )}
                   </div>
                   <h3 className="text-xl font-bold text-gray-800 mb-3">{news.title}</h3>
-                  <p className="text-gray-600 mb-4 line-clamp-3">{news.content}</p>
+                  <p className="text-gray-600 mb-4 line-clamp-3 whitespace-pre-line">{news.content}</p>
                   
                   {/* Special handling for result-related news */}
                   {containsResult(news.content) && (

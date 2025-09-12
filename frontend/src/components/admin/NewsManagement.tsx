@@ -208,7 +208,7 @@ const NewsManagement: React.FC<NewsManagementProps> = ({ admin }) => {
                     {newsItem.author && (
                       <div className="flex items-center">
                         <User className="w-4 h-4 mr-1" />
-                        {newsItem.author}
+                        {newsItem.author.toUpperCase()}
                       </div>
                     )}
                   </div>
@@ -232,7 +232,7 @@ const NewsManagement: React.FC<NewsManagementProps> = ({ admin }) => {
               </div>
 
               {/* Content Preview */}
-              <p className="text-gray-600 text-sm mb-4 line-clamp-3">
+              <p className="text-gray-600 text-sm mb-4 line-clamp-3 whitespace-pre-line">
                 {newsItem.content}
               </p>
 
@@ -240,12 +240,12 @@ const NewsManagement: React.FC<NewsManagementProps> = ({ admin }) => {
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-2">
                   {newsItem.tag && (
-                    <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                    <span className="inline-flex items-center px-2 py-1 rounded-md text-xs font-medium bg-blue-100 text-blue-800">
                       <Tag className="w-3 h-3 mr-1" />
                       {newsItem.tag}
                     </span>
                   )}
-                  <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
+                  <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-md ${
                     newsItem.isPublished 
                       ? 'bg-green-100 text-green-800' 
                       : 'bg-yellow-100 text-yellow-800'
@@ -253,9 +253,9 @@ const NewsManagement: React.FC<NewsManagementProps> = ({ admin }) => {
                     {newsItem.isPublished ? 'Published' : 'Draft'}
                   </span>
                 </div>
-                <div className="text-xs text-gray-400">
+                {/* <div className="text-xs text-gray-400">
                   {newsItem.slug}
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

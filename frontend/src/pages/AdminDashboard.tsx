@@ -48,8 +48,7 @@ const AdminDashboard: React.FC = () => {
   const tabs = [
     { id: 'news', label: 'News Management', icon: '📰' },
     { id: 'events', label: 'Events Management', icon: '🎉' },
-    { id: 'applicants', label: 'Applicants', icon: '👥' },
-    { id: 'images', label: 'Images Management', icon: '🖼️' }
+    { id: 'applicants', label: 'Applicants', icon: '👥' }
   ];
 
   return (

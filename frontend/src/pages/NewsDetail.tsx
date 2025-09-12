@@ -88,7 +88,7 @@ console.log(news, newsSlug)
             <ArrowLeft className="w-5 h-5 mr-2" />
             Back to News
           </Link>
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">{newsItem.title}</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-6 w-2/3">{newsItem.title}</h1>
           <div className="flex items-center space-x-6 text-lg">
             <div className="flex items-center">
               <Calendar className="w-5 h-5 mr-2" />
@@ -102,7 +102,7 @@ console.log(news, newsSlug)
             )}
             {newsItem.author && (
               <div className="flex items-center">
-                <span className="text-blue-200">By {newsItem.author}</span>
+                <span className="text-blue-200">By {newsItem.author.toUpperCase()}</span>
               </div>
             )}
           </div>
@@ -114,9 +114,9 @@ console.log(news, newsSlug)
           {/* Article Content */}
           <div className="bg-white rounded-lg shadow-lg p-10 mb-8">
             <div className="prose prose-lg max-w-none">
-              <p className="text-xl text-gray-700 leading-relaxed mb-8">
+              <div className="text-xl text-gray-700 leading-relaxed mb-8 whitespace-pre-wrap">
                 {newsItem.content}
-              </p>
+              </div>
               
               {/* Special handling for result-related news */}
               {containsResult(newsItem.content) && (
