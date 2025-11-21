@@ -9,6 +9,7 @@ import newsRouter from './routes/news';
 import eventsRouter from './routes/events';
 import adminRouter from './routes/admin';
 import imagesRouter from './routes/images';
+import resultCheckerRouter from './routes/resultChecker';
 
 // Initialize express
 const app = express();
@@ -33,6 +34,7 @@ app.use('/api/events', eventsRouter);
 // app.use('/api/gallery', galleryRouter);
 app.use('/api/admin', adminRouter);
 app.use('/api/images', imagesRouter);
+app.use('/api/result-checker', resultCheckerRouter);
 
 // Error handling middleware
 app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
